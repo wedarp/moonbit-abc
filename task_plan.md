@@ -8,10 +8,14 @@
 
 - [completed] 比赛规则、生态重复度与工具链调研
 - [completed] 设计评审与实现方案确认
-- [pending] MoonBit 模块与解析器核心实现
+- [in_progress] MoonBit 模块与解析器核心实现
 - [pending] 校验、JSON、pretty printer、CLI/示例与测试扩充
 - [pending] CI、文档、许可证、版本与 Mooncakes 发布准备
 - [pending] Git 历史、GitHub/GitLink 推送与 OSC2026 自检
+
+## Implementation plan
+
+详见 `docs/superpowers/plans/2026-08-05-moonbit-abc-implementation.md`，按 Task 1–12 执行。
 
 ## 约束
 
