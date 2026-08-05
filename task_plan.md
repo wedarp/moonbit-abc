@@ -20,7 +20,7 @@
 ## 约束
 
 - 主要实现语言必须是 MoonBit。
-- 目标工具链优先按 MoonBit 0.10.3 验证；执行 `moon fmt --deny-warn` 与 `moon info --deny-warn`，并补充 `moon check`/`moon test`/构建检查。
+- 目标工具链优先按 MoonBit 0.10.3 验证；当前工具链用 `moon fmt --check`、`moon check --deny-warn --fmt`、`moon info`、`moon test --deny-warn` 和构建检查实现严格门禁；`moon fmt --deny-warn` 与 `moon info --deny-warn` 在本机帮助中不存在。
 - 有效提交次数至少 10 次；作者身份只使用仓库所有者本人，不创建虚拟贡献者。
 - GitHub 推送只使用用户已通过 `gh auth login` 建立的当前授权；不使用历史缓存账号。
 - GitLink 推送使用用户提供的账号认证，不将密码写入文件、提交或回复。
