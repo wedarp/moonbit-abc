@@ -16,3 +16,4 @@
 - Task 3 RED/GREEN 完成：scanner 测试先因 `scan` 未绑定而失败；随后加入带行号的 field/comment/music/bar token 扫描和公开 token 查询方法，`moon test src/abc` 为 4/4，`moon check --deny-warn --fmt src/abc` 与 `moon fmt --check` 通过。
 - Task 4 RED/GREEN 完成：header 测试先因 `Document` 查询方法缺失而失败；随后加入重复字段查询、K/M/L 读取和 V 声部计数，`moon test src/abc` 为 6/6，`moon check --deny-warn --fmt src/abc` 与 `moon fmt --check` 通过。
 - Task 5 RED/GREEN 完成：music/lyrics 测试先因分类和查询方法缺失而失败；随后加入音符、休止、bar、repeat、ornament、voice switch、歌词和声部 item 计数，`moon test src/abc` 为 9/9，`moon check --deny-warn --fmt src/abc` 与 `moon fmt --check` 通过。
+- Task 6 RED/GREEN 完成：校验/规范化测试先因诊断码、normalize 和查询 API 缺失而失败；修复 `|:` 被误识别为 header 的根因后，加入必需 header、meter、重复 voice、repeat 配对、raw syntax 诊断与 header 排序，`moon test src/abc` 为 13/13，`moon check --deny-warn --fmt src/abc` 与 `moon fmt --check` 通过。

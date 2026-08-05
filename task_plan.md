@@ -32,6 +32,8 @@
 |---|---:|---|
 | `moon fmt --check --warn` rejected because the two options are mutually exclusive | 1 | Use `moon fmt --check` and enforce warnings/format through `moon check --deny-warn --fmt` |
 | Existing header test expected pre-parser Raw segment count after music item classification | 1 | Updated the regression expectation from 2 to 4 items for `C D | E` |
+| `|:` was classified as a header because the parser only checked key length | 1 | Added a shared legal field-key predicate and regression test; repeat parsing now reaches the music parser |
+| Temporary `debug_inspect(codes)` caused an expect-test failure after root-cause output was captured | 1 | Removed the diagnostic instrumentation and reran the full suite |
 
 ## 错误记录
 

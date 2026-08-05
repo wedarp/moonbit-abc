@@ -59,7 +59,7 @@ pub fn scan(input : String) -> Array[Token] {
       .split(":")
       .map(fn(part) { part.to_owned() })
       .collect()
-    if fields.length() >= 2 && fields[0].length() == 1 {
+    if fields.length() >= 2 && is_field_key(fields[0]) {
       tokens.push(token(Field, trimmed, line_number))
       line_number += 1
       continue

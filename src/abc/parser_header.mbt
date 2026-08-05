@@ -1,4 +1,35 @@
 ///|
+
+///|
+fn is_field_key(key : String) -> Bool {
+  match key {
+    "X"
+    | "T"
+    | "M"
+    | "L"
+    | "K"
+    | "V"
+    | "C"
+    | "P"
+    | "I"
+    | "Q"
+    | "R"
+    | "Z"
+    | "N"
+    | "O"
+    | "A"
+    | "H"
+    | "S"
+    | "B"
+    | "F"
+    | "U"
+    | "w"
+    | "W" => true
+    _ => false
+  }
+}
+
+///|
 pub fn Document::header_values(self : Document, key : String) -> Array[String] {
   let values = []
   for header in self.headers {
