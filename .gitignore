@@ -1,0 +1,9 @@
+_build/
+.repos/
+.moon/
+.idea/
+.vscode/
+*.swp
+*.tmp
+*.log
+coverage/

@@ -15,7 +15,7 @@
 - The public output is a structured AST, versioned JSON, diagnostics with source locations, and deterministic pretty-printed ABC.
 - MIDI playback, MusicXML conversion, audio synthesis, and a full ABC dialect implementation are out of scope for this release.
 - Validate with the organizer-requested MoonBit 0.10.3 toolchain when available; record the actual local/CI version because the current local binary reports `moon 0.1.20260713`.
-- Use strict checks supported by the installed toolchain: `moon check --deny-warn --fmt`, `moon test --deny-warn`, `moon fmt --check --warn`, `moon info`, and a clean generated-interface diff.
+- Use strict checks supported by the installed toolchain: `moon check --deny-warn --fmt`, `moon test --deny-warn`, `moon fmt --check`, `moon info`, and a clean generated-interface diff. The installed toolchain rejects `moon fmt --check --warn` because those options are mutually exclusive.
 - Keep at least 10 meaningful commits authored only by the repository owner; do not create bot, AI, or virtual contributors.
 - Use Apache-2.0 and document all external standards, dependencies, and sources.
 - Never put GitLink passwords, GitHub tokens, or credentials in files, URLs, commits, logs, or documentation.
@@ -377,7 +377,7 @@ Read the supplied `PaiGack/moonbitlang-OSC2026` workflow and `moonbit-community/
 
 - [ ] **Step 2: Add the strict library workflow**
 
-Trigger on push, pull request, and manual dispatch. Install the documented MoonBit toolchain, run `moon fmt --check --warn`, `moon check --deny-warn --fmt`, `moon info`, verify no unexpected generated-interface diff, run `moon test --deny-warn`, and run `moon build --target native`.
+Trigger on push, pull request, and manual dispatch. Install the documented MoonBit toolchain, run `moon fmt --check`, `moon check --deny-warn --fmt`, `moon info`, verify no unexpected generated-interface diff, run `moon test --deny-warn`, and run `moon build --target native`.
 
 - [ ] **Step 3: Add the CLI workflow**
 
@@ -410,7 +410,7 @@ git commit -m "ci: enforce moonbit checks and cli examples"
 - [ ] **Step 1: Run the full local matrix**
 
 ```powershell
-moon fmt --check --warn
+moon fmt --check
 moon check --deny-warn --fmt
 moon info
 moon test --deny-warn
@@ -476,4 +476,3 @@ Run `git fsck --no-reflogs --full`, `git log --format='%an <%ae>'`, `git count-o
 git add README.md .github progress.md
 git commit -m "docs: record repository release audit"
 ```
-

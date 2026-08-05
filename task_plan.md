@@ -26,6 +26,12 @@
 - GitLink 推送使用用户提供的账号认证，不将密码写入文件、提交或回复。
 - 选题应避开 MoonBit 生态已有成熟项目的高度重合，并保持可扩展边界。
 
+## Errors Encountered
+
+| Error | Attempt | Resolution |
+|---|---:|---|
+| `moon fmt --check --warn` rejected because the two options are mutually exclusive | 1 | Use `moon fmt --check` and enforce warnings/format through `moon check --deny-warn --fmt` |
+
 ## 错误记录
 
 | 错误 | 尝试 | 处理 |
