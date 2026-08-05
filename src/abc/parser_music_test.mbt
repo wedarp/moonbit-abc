@@ -40,3 +40,24 @@ test "parser accepts windows line endings without leaking carriage returns" {
   inspect(diagnostics.length(), content="0")
   inspect(document.has_item_kind("bar"), content="true")
 }
+
+///|
+test "parser preserves chords decorations tuplets comments and directives" {
+  let document = parse(
+    "X: 1\nK: C\n[CEG] !trill! (3ABC C\n% keep this editor note\n%%MIDI program 1\n",
+  )
+  inspect(document.has_item_kind("chord"), content="true")
+  inspect(document.has_item_kind("decoration"), content="true")
+  inspect(document.has_item_kind("tuplet"), content="true")
+  inspect(document.has_item_kind("comment"), content="true")
+  inspect(document.directives().length(), content="1")
+  inspect(parse_chord_notes("[CEG]").length(), content="3")
+  inspect(validate(document).length(), content="0")
+}
+
+///|
+test "validator rejects malformed chord bodies" {
+  let document = parse("X: 1\nK: C\n[C?] C\n")
+  let codes = validate(document).map(fn(diagnostic) { diagnostic.code_name() })
+  inspect(codes.contains("invalid_chord"), content="true")
+}

@@ -4,5 +4,7 @@ M: 4/4
 L: 1/8
 K: C
 V: lead
-C D E F | G2 G2 |
+C D E F | [CEG] !trill! G2 |
+% a source-aware editor comment
+%%MIDI program 1
 w: do re mi fa sol

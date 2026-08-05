@@ -255,6 +255,60 @@ pub fn parse_note_value(raw : String) -> NoteValue? {
 }
 
 ///|
+fn chars_to_string(chars : Array[Char], start : Int, end : Int) -> String {
+  let result = []
+  let mut index = start
+  while index < end && index < chars.length() {
+    result.push(chars[index])
+    index += 1
+  }
+  String::from_array(result)
+}
+
+///|
+/// Parse the individual pitches inside an ABC chord such as `[CEG]`.
+///
+/// The chord parser intentionally keeps the original bracketed spelling in the
+/// AST while exposing typed notes for validators, indexers and JSON consumers.
+pub fn parse_chord_notes(raw : String) -> Array[NoteValue] {
+  let result = []
+  let text = raw.trim().to_owned()
+  let chars = text.to_array()
+  if chars.length() < 3 || chars[0] != '[' || chars[chars.length() - 1] != ']' {
+    return result
+  }
+  let end = chars.length() - 1
+  let mut index = 1
+  while index < end {
+    while index < end && (chars[index] == ' ' || chars[index] == '\t') {
+      index += 1
+    }
+    if index >= end {
+      break
+    }
+    let note_start = index
+    let (_, after_accidental) = parse_accidental(chars, index)
+    index = after_accidental
+    if index >= end {
+      return []
+    }
+    match parse_note_letter(chars[index]) {
+      None => return []
+      Some(_) => index += 1
+    }
+    while index < end && (chars[index] == '\'' || chars[index] == ',') {
+      index += 1
+    }
+    let note_text = chars_to_string(chars, note_start, index)
+    match parse_note_value(note_text) {
+      None => return []
+      Some(note) => result.push(note)
+    }
+  }
+  result
+}
+
+///|
 /// Parse a meter field, including additive numerators.
 pub fn parse_meter(raw : String) -> Meter? {
   let parts : Array[String] = raw

@@ -10,6 +10,8 @@ pub fn normalize(Document) -> Document
 
 pub fn parse(String) -> Document
 
+pub fn parse_chord_notes(String) -> Array[NoteValue]
+
 pub fn parse_key_signature(String) -> KeySignature?
 
 pub fn parse_meter(String) -> Meter?
@@ -57,6 +59,7 @@ pub enum DiagnosticCode {
   InvalidMeter
   InvalidKey
   InvalidNote
+  InvalidChord
   UnmatchedRepeat
   InvalidField
   UnsupportedSyntax
@@ -69,6 +72,7 @@ pub struct Document {
   items : Array[MusicItem]
   lyrics : Array[Lyrics]
 } derive(Eq, ToJson, @debug.Debug)
+pub fn Document::directives(Self) -> Array[String]
 pub fn Document::has_item_kind(Self, String) -> Bool
 pub fn Document::header_keys(Self) -> Array[String]
 pub fn Document::header_value(Self, String) -> String
@@ -86,18 +90,27 @@ pub struct DocumentStatistics {
   bars : Int
   repeats : Int
   ornaments : Int
+  chords : Int
+  decorations : Int
+  tuplets : Int
+  comments : Int
   raw : Int
   voices : Int
   lyrics : Int
 } derive(Eq, ToJson, @debug.Debug)
 pub fn DocumentStatistics::bar_count(Self) -> Int
+pub fn DocumentStatistics::chord_count(Self) -> Int
+pub fn DocumentStatistics::comment_count(Self) -> Int
+pub fn DocumentStatistics::decoration_count(Self) -> Int
 pub fn DocumentStatistics::lyrics_count(Self) -> Int
 pub fn DocumentStatistics::note_count(Self) -> Int
 pub fn DocumentStatistics::repeat_count(Self) -> Int
 pub fn DocumentStatistics::rest_count(Self) -> Int
+pub fn DocumentStatistics::tuplet_count(Self) -> Int
 
 pub enum Header {
   Field(String, String, Span)
+  Directive(String, Span)
 } derive(Eq, ToJson, @debug.Debug)
 
 pub struct KeySignature {
@@ -131,6 +144,10 @@ pub enum MusicItem {
   Bar(String, Span)
   Repeat(String, Span)
   Ornament(String, Span)
+  Chord(String, Span)
+  Decoration(String, Span)
+  Tuplet(String, Span)
+  Comment(String, Span)
   InlineField(String, String, Span)
   VoiceSwitch(String, Span)
 } derive(Eq, ToJson, @debug.Debug)

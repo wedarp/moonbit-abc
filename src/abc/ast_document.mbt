@@ -1,6 +1,7 @@
 ///|
 pub enum Header {
   Field(String, String, Span)
+  Directive(String, Span)
 } derive(Debug, Eq, ToJson)
 
 ///|
@@ -60,7 +61,21 @@ pub fn parse(input : String) -> Document {
   for raw_line in input.split("\n") {
     let line = raw_line.to_owned()
     let fields = field_parts(line)
-    if fields.length() >= 2 && is_field_key(fields[0]) {
+    if line.trim().has_prefix("%%") {
+      headers.push(
+        Header::Directive(
+          line.trim().to_owned(),
+          line_span(source_offset, line_number, line.length()),
+        ),
+      )
+    } else if line.trim().has_prefix("%") {
+      items.push(
+        MusicItem::Comment(
+          line.trim().to_owned(),
+          line_span(source_offset, line_number, line.length()),
+        ),
+      )
+    } else if fields.length() >= 2 && is_field_key(fields[0]) {
       if fields[0] == "V" {
         current_voice = fields[1].trim().to_owned()
         voices.push(Voice::{ id: current_voice, items: [] })
@@ -167,6 +182,7 @@ pub fn validate(document : Document) -> Array[Diagnostic] {
             ),
           )
         }
+      Header::Directive(_, _) => ()
     }
   }
   if !has_reference {
@@ -226,6 +242,17 @@ pub fn validate(document : Document) -> Array[Diagnostic] {
             span,
           ),
         )
+      MusicItem::Chord(value, span) =>
+        if parse_chord_notes(value).length() == 0 {
+          diagnostics.push(
+            diagnostic(
+              Error,
+              InvalidChord,
+              "chord must contain valid ABC notes",
+              span,
+            ),
+          )
+        }
       _ => ()
     }
   }

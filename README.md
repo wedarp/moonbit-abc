@@ -5,7 +5,7 @@
 ## 能做什么
 
 - 解析 `X`、`T`、`M`、`L`、`K`、`V` 等 header，并保留扩展字段。
-- 解析 voice、note、rest、bar、repeat、ornament 和 lyrics 节点。
+- 解析 voice、note、rest、bar、repeat、ornament、chord、decoration、tuplet、comment 和 lyrics 节点，并保留 `%%` directive。
 - 用 `Span` 保留节点在源文本中的偏移、行号和列号。
 - 检查缺少的 `X`/`K`、非法 meter、重复 voice、未配对 repeat，以及暂未支持但已保留的原文语法。
 - 输出稳定的 schema v1 JSON，并按 `X/T/M/L/K/V` 与扩展字段排序后打印 ABC。
@@ -26,6 +26,7 @@ let normalized = @abc.pretty_print(document)
 let notes = @abc.parse_note_value("^C'3/2")
 let meter = @abc.parse_meter("3+2/8")
 let key = @abc.parse_key_signature("Dm")
+let chord_notes = @abc.parse_chord_notes("[CEG]")
 let statistics = document.statistics()
 ```
 
@@ -56,7 +57,7 @@ moon info
 
 ## 设计边界与后续方向
 
-解析器目前是 source-aware 的轻量 AST，优先保障 header、声部、节拍、调号、重复记号、装饰音和歌词在编辑器/曲库场景中的可追踪性。后续可以在不破坏 schema 的前提下增加拍号语义、宏展开、引用解析、增量解析、更多 ABC 标准字段和编辑器诊断适配。
+解析器目前是 source-aware 的轻量 AST，优先保障 header、声部、节拍、调号、重复记号、和弦、装饰音、连音、注释和歌词在编辑器/曲库场景中的可追踪性。后续可以在不破坏 schema 的前提下增加拍号语义、宏展开、引用解析、增量解析、更多 ABC 标准字段和编辑器诊断适配。
 
 ## 来源与生态核验
 

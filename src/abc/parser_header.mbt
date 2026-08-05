@@ -38,6 +38,7 @@ pub fn Document::header_values(self : Document, key : String) -> Array[String] {
         if header_key == key {
           values.push(value)
         }
+      Header::Directive(_, _) => ()
     }
   }
   values
@@ -56,4 +57,17 @@ pub fn Document::header_value(self : Document, key : String) -> String {
 ///|
 pub fn Document::voice_count(self : Document) -> Int {
   self.voices.length()
+}
+
+///|
+/// Return compiler-style directives such as `%%MIDI` in source order.
+pub fn Document::directives(self : Document) -> Array[String] {
+  let result = []
+  for header in self.headers {
+    match header {
+      Header::Directive(value, _) => result.push(value)
+      Header::Field(_, _, _) => ()
+    }
+  }
+  result
 }

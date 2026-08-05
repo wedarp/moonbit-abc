@@ -16,3 +16,13 @@ test "json output round trips through the standard json parser" {
   let decoded = @json.parse(encoded)
   inspect(decoded.stringify() == encoded, content="true")
 }
+
+///|
+test "json output describes structured chord and directive nodes" {
+  let document = parse("X: 1\nK: C\n[CEG] !trill!\n%%MIDI program 1\n")
+  let encoded = to_json(document).stringify()
+  inspect(encoded.contains("\"kind\":\"chord\""), content="true")
+  inspect(encoded.contains("\"notes\":["), content="true")
+  inspect(encoded.contains("\"kind\":\"directive\""), content="true")
+  inspect(encoded.contains("\"kind\":\"decoration\""), content="true")
+}

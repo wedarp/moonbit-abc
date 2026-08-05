@@ -18,6 +18,12 @@ fn header_to_json(header : Header) -> Json {
         "value": Json::string(value),
         "span": span_to_json(span),
       })
+    Header::Directive(value, span) =>
+      Json::object({
+        "kind": Json::string("directive"),
+        "value": Json::string(value),
+        "span": span_to_json(span),
+      })
   }
 }
 
@@ -59,6 +65,40 @@ fn item_to_json(item : MusicItem) -> Json {
     Ornament(value, span) =>
       Json::object({
         "kind": Json::string("ornament"),
+        "value": Json::string(value),
+        "span": span_to_json(span),
+      })
+    Chord(value, span) =>
+      Json::object({
+        "kind": Json::string("chord"),
+        "value": Json::string(value),
+        "notes": Json::array(
+          parse_chord_notes(value).map(fn(note) {
+            Json::object({
+              "letter": Json::string(note.letter_name()),
+              "accidental": Json::string(note.accidental_name()),
+              "octave": Json::number(note.octave().to_double()),
+              "duration": Json::string(note.duration_text()),
+            })
+          }),
+        ),
+        "span": span_to_json(span),
+      })
+    Decoration(value, span) =>
+      Json::object({
+        "kind": Json::string("decoration"),
+        "value": Json::string(value),
+        "span": span_to_json(span),
+      })
+    Tuplet(value, span) =>
+      Json::object({
+        "kind": Json::string("tuplet"),
+        "value": Json::string(value),
+        "span": span_to_json(span),
+      })
+    Comment(value, span) =>
+      Json::object({
+        "kind": Json::string("comment"),
         "value": Json::string(value),
         "span": span_to_json(span),
       })

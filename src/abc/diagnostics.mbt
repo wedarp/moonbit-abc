@@ -13,6 +13,7 @@ pub enum DiagnosticCode {
   InvalidMeter
   InvalidKey
   InvalidNote
+  InvalidChord
   UnmatchedRepeat
   InvalidField
   UnsupportedSyntax
@@ -46,6 +47,7 @@ pub fn Diagnostic::code_name(self : Diagnostic) -> String {
     InvalidMeter => "invalid_meter"
     InvalidKey => "invalid_key"
     InvalidNote => "invalid_note"
+    InvalidChord => "invalid_chord"
     UnmatchedRepeat => "unmatched_repeat"
     InvalidField => "invalid_field"
     UnsupportedSyntax => "unsupported_syntax"

@@ -8,6 +8,10 @@ fn item_text(item : MusicItem) -> String? {
     Bar(value, _) => Some(value)
     Repeat(value, _) => Some(value)
     Ornament(value, _) => Some(value)
+    Chord(value, _) => Some(value)
+    Decoration(value, _) => Some(value)
+    Tuplet(value, _) => Some(value)
+    Comment(value, _) => Some(value)
     InlineField(key, value, _) => Some("[" + key + ":" + value + "]")
   }
 }
@@ -21,6 +25,10 @@ pub fn pretty_print(document : Document) -> String {
       Header::Field(key, value, _) => {
         builder.write_string(key)
         builder.write_string(": ")
+        builder.write_string(value)
+        builder.write_char('\n')
+      }
+      Header::Directive(value, _) => {
         builder.write_string(value)
         builder.write_char('\n')
       }

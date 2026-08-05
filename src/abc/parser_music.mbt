@@ -15,12 +15,19 @@ fn parse_music_word(
   match parse_inline_field(normalized_word, span) {
     Some(item) => item
     None =>
-      if normalized_word == "|" || normalized_word == "||" {
+      if normalized_word.has_prefix("[") && normalized_word.has_suffix("]") {
+        MusicItem::Chord(normalized_word, span)
+      } else if normalized_word == "|" || normalized_word == "||" {
         MusicItem::Bar(normalized_word, span)
       } else if normalized_word == "|:" ||
         normalized_word == ":|" ||
         normalized_word == "::" {
         MusicItem::Repeat(normalized_word, span)
+      } else if normalized_word.has_prefix("!") &&
+        normalized_word.has_suffix("!") {
+        MusicItem::Decoration(normalized_word, span)
+      } else if normalized_word.has_prefix("(") && normalized_word.length() > 1 {
+        MusicItem::Tuplet(normalized_word, span)
       } else if normalized_word.has_prefix("~") ||
         normalized_word.has_prefix("{") {
         MusicItem::Ornament(normalized_word, span)

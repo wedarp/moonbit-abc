@@ -2,6 +2,7 @@
 fn header_key(header : Header) -> String {
   match header {
     Header::Field(key, _, _) => key
+    Header::Directive(value, _) => value
   }
 }
 

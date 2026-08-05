@@ -12,7 +12,7 @@
 | `items` | array | 文档级音乐节点，包含声部切换节点 |
 | `lyrics` | array | `w:`/`W:` 歌词行 |
 
-字段节点包含 `kind`, `key`, `value` 和 `span`。音乐节点包含 `kind`, `value` 和 `span`；`kind` 可为 `note`、`rest`、`bar`、`repeat`、`ornament`、`inline_field`、`voice` 或 `raw`。`note`/`rest` 还带有 typed `notation` 对象，包含 `letter`、`accidental`、`octave` 和规范化的 `duration`。`inline_field` 额外包含字段 `key`。歌词节点包含 `text` 和 `span`。
+字段节点包含 `kind`, `key`, `value` 和 `span`；`directive` 节点使用 `kind`, `value` 和 `span`。音乐节点包含 `kind`, `value` 和 `span`；`kind` 可为 `note`、`rest`、`bar`、`repeat`、`ornament`、`chord`、`decoration`、`tuplet`、`comment`、`inline_field`、`voice` 或 `raw`。`note`/`rest` 还带有 typed `notation` 对象，包含 `letter`、`accidental`、`octave` 和规范化的 `duration`。`chord` 额外包含带 typed notation 的 `notes` 数组，`inline_field` 额外包含字段 `key`。歌词节点包含 `text` 和 `span`。
 
 ## 位置对象
 
