@@ -22,3 +22,6 @@
 - Task 9 完成：加入双语 README、JSON schema、来源与范围说明、Apache-2.0 许可证引用和 GitHub Actions；CI 固定 MoonBit 0.10.3，并执行格式化、无警告检查、测试、接口生成、构建和 CLI 状态检查。
 - Task 10 RED/GREEN 完成：typed notation 测试先因解析 API 缺失而失败；随后加入音符/休止符时值、拍号、调号、声部 metadata、诊断位置和文档统计 API，测试扩展到 30 项。
 - Task 11 RED/GREEN 完成：inline field 测试先因空格词法切分而失败；随后加入括号/引号感知音乐扫描、inline field AST/JSON/pretty printer 和精确源偏移，同时修复 header 值中冒号被截断的问题。
+- Task 12 RED/GREEN 完成：Windows 换行回归测试先暴露 `|\r` 误识别为音符；随后修正 token 清理并验证 31/31。
+- Task 13 完成：扩展 chord、decoration、tuplet、comment、`%%` directive 的 AST/校验/JSON/pretty printer/统计支持，完整测试达到 40/40，总 MoonBit 源码 2,101 行。
+- 发布自检完成：GitHub `wedarp/moonbit-abc` 与 GitLink `Qqwkkr/moonbit-abc` 均使用 `main` 默认分支、16 次有效提交和单一账号创建者身份；本地 `moon fmt --check`、`moon check --deny-warn --fmt`、`moon test --deny-warn`、`moon info`、`moon build` 与 CLI 正负例均已核验。
