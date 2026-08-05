@@ -13,3 +13,4 @@
 - 本机 `moon version` 输出为 `moon 0.1.20260713 (75c7e1f 2026-07-13)`，与组委会口径的 0.10.3 需要在实现/CI 阶段进一步核对。
 - 完成实现计划提交；Task 1 已写入模块元数据、包边界、Apache-2.0、贡献指南和变更日志。当前工具链验证确认 `moon fmt --check --warn` 不可用，已改用 `moon fmt --check` + `moon check --deny-warn --fmt`。
 - Task 2 RED/GREEN 完成：黑盒测试先因 `parse`/`validate` 未绑定而失败；随后加入最小公开 AST、Span、诊断和 header/body 解析，`moon test src/abc` 为 2/2，`moon check --deny-warn --fmt src/abc` 通过。
+- Task 3 RED/GREEN 完成：scanner 测试先因 `scan` 未绑定而失败；随后加入带行号的 field/comment/music/bar token 扫描和公开 token 查询方法，`moon test src/abc` 为 4/4，`moon check --deny-warn --fmt src/abc` 与 `moon fmt --check` 通过。
