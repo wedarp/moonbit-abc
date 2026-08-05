@@ -3,7 +3,13 @@ fn diagnostics_text(source : String) -> String {
   let diagnostics = @library.validate(@library.parse(source))
   let builder = StringBuilder::new()
   for diagnostic in diagnostics {
+    builder.write_string(diagnostic.line().to_string())
+    builder.write_char(':')
+    builder.write_string(diagnostic.column().to_string())
+    builder.write_string(": ")
     builder.write_string(diagnostic.code_name())
+    builder.write_string(": ")
+    builder.write_string(diagnostic.message())
     builder.write_char('\n')
   }
   builder.to_string()
