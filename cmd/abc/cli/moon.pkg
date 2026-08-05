@@ -1,4 +1,4 @@
 import {
-  "Qqwkkr/moonbit-abc/src/abc" @library,
+  "wedarp/moonbit-abc/src/abc" @library,
   "moonbitlang/x/fs",
 }

@@ -24,4 +24,5 @@
 - Task 11 RED/GREEN 完成：inline field 测试先因空格词法切分而失败；随后加入括号/引号感知音乐扫描、inline field AST/JSON/pretty printer 和精确源偏移，同时修复 header 值中冒号被截断的问题。
 - Task 12 RED/GREEN 完成：Windows 换行回归测试先暴露 `|\r` 误识别为音符；随后修正 token 清理并验证 31/31。
 - Task 13 完成：扩展 chord、decoration、tuplet、comment、`%%` directive 的 AST/校验/JSON/pretty printer/统计支持，完整测试达到 40/40，总 MoonBit 源码 2,101 行。
-- 发布自检完成：GitHub `wedarp/moonbit-abc` 与 GitLink `Qqwkkr/moonbit-abc` 均使用 `main` 默认分支、16 次有效提交和单一账号创建者身份；本地 `moon fmt --check`、`moon check --deny-warn --fmt`、`moon test --deny-warn`、`moon info`、`moon build` 与 CLI 正负例均已核验。
+- 发布自检完成：GitHub `wedarp/moonbit-abc` 与 GitLink `Qqwkkr/moonbit-abc` 均使用 `main` 默认分支、18 次有效提交和单一账号创建者身份；本地 `moon fmt --check`、`moon check --deny-warn --fmt`、`moon test --deny-warn`、`moon info`、`moon build` 与 CLI 正负例均已核验。
+- Mooncakes 发布预检完成：当前登录身份为 `wedarp`，模块名已调整为 `wedarp/moonbit-abc`，服务端返回 `202 Accepted`，确认 `0.1.0` 可发布且预检未写入远程。

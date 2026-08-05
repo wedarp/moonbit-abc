@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "Qqwkkr/moonbit-abc/cmd/abc/cli"
+package "wedarp/moonbit-abc/cmd/abc/cli"
 
 // Values
 pub fn check_source(String) -> String

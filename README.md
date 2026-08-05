@@ -16,7 +16,7 @@ JSON 字段定义见 [`docs/json-schema.md`](docs/json-schema.md)，可运行样
 
 ## 使用库
 
-在 `moon.pkg` 中依赖 `Qqwkkr/moonbit-abc/src/abc` 后：
+在 `moon.pkg` 中依赖 `wedarp/moonbit-abc/src/abc` 后：
 
 ```moonbit
 let document = @abc.parse(source)
