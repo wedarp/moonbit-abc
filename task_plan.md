@@ -34,6 +34,7 @@
 | Existing header test expected pre-parser Raw segment count after music item classification | 1 | Updated the regression expectation from 2 to 4 items for `C D | E` |
 | `|:` was classified as a header because the parser only checked key length | 1 | Added a shared legal field-key predicate and regression test; repeat parsing now reaches the music parser |
 | Temporary `debug_inspect(codes)` caused an expect-test failure after root-cause output was captured | 1 | Removed the diagnostic instrumentation and reran the full suite |
+| `@json.Json` was not a valid qualified type name in the installed MoonBit toolchain | 1 | Confirmed the prelude `Json` type and constructors with `moon ide doc`, then used unqualified `Json` in the serializer |
 
 ## 错误记录
 

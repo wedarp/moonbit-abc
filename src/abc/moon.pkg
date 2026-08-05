@@ -1,1 +1,3 @@
-// Public ABC notation parser package.
+import {
+  "moonbitlang/core/json",
+}

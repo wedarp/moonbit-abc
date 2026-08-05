@@ -1,0 +1,116 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Qqwkkr/moonbit-abc/src/abc"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn normalize(Document) -> Document
+
+pub fn parse(String) -> Document
+
+pub fn pretty_print(Document) -> String
+
+pub fn scan(String) -> Array[Token]
+
+pub fn to_json(Document) -> Json
+
+pub fn validate(Document) -> Array[Diagnostic]
+
+// Errors
+
+// Types and methods
+pub struct Diagnostic {
+  severity : Severity
+  code : DiagnosticCode
+  message : String
+  span : Span
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Diagnostic::code_name(Self) -> String
+
+pub enum DiagnosticCode {
+  EmptyKey
+  MissingReference
+  MissingKey
+  DuplicateVoice
+  InvalidMeter
+  InvalidKey
+  UnmatchedRepeat
+  InvalidField
+  UnsupportedSyntax
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct Document {
+  schema_version : String
+  headers : Array[Header]
+  voices : Array[Voice]
+  items : Array[MusicItem]
+  lyrics : Array[Lyrics]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Document::has_item_kind(Self, String) -> Bool
+pub fn Document::header_keys(Self) -> Array[String]
+pub fn Document::header_value(Self, String) -> String
+pub fn Document::header_values(Self, String) -> Array[String]
+pub fn Document::lyrics_lines(Self) -> Array[String]
+pub fn Document::voice_count(Self) -> Int
+pub fn Document::voice_items_count(Self, String) -> Int
+
+pub enum Header {
+  Field(String, String, Span)
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct Lyrics {
+  text : String
+  span : Span
+} derive(Eq, ToJson, @debug.Debug)
+
+pub enum MusicItem {
+  Raw(String, Span)
+  Note(String, Span)
+  Rest(String, Span)
+  Bar(String, Span)
+  Repeat(String, Span)
+  Ornament(String, Span)
+  VoiceSwitch(String, Span)
+} derive(Eq, ToJson, @debug.Debug)
+pub fn MusicItem::kind_name(Self) -> String
+
+pub enum Severity {
+  Error
+  Warning
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct Span {
+  start : Int
+  end : Int
+  line : Int
+  column : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct Token {
+  kind : TokenKind
+  text : String
+  line : Int
+  column : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Token::kind_name(Self) -> String
+pub fn Token::line(Self) -> Int
+pub fn Token::text(Self) -> String
+
+pub enum TokenKind {
+  Field
+  Comment
+  Music
+  Bar
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct Voice {
+  id : String
+  items : Array[MusicItem]
+} derive(Eq, ToJson, @debug.Debug)
+
+// Type aliases
+
+// Traits
+
