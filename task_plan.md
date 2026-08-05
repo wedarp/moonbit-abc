@@ -31,6 +31,7 @@
 | Error | Attempt | Resolution |
 |---|---:|---|
 | `moon fmt --check --warn` rejected because the two options are mutually exclusive | 1 | Use `moon fmt --check` and enforce warnings/format through `moon check --deny-warn --fmt` |
+| Existing header test expected pre-parser Raw segment count after music item classification | 1 | Updated the regression expectation from 2 to 4 items for `C D | E` |
 
 ## 错误记录
 

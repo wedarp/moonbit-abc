@@ -14,5 +14,5 @@ test "header parser preserves repeated fields and typed header values" {
 test "header parser stops treating body text as fields" {
   let document = parse("X: 1\nK: C\nC: D\nC D | E\n")
   inspect(document.header_value("C"), content="D")
-  inspect(document.items.length(), content="2")
+  inspect(document.items.length(), content="4")
 }
