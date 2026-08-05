@@ -1,0 +1,6 @@
+pkgtype(kind: "executable")
+
+import {
+  "Qqwkkr/moonbit-abc/cmd/abc/cli",
+  "moonbitlang/x/sys",
+}

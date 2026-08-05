@@ -13,3 +13,7 @@ keywords = [ "abc-notation", "music", "parser", "ast", "lyrics" ]
 preferred_target = "wasm-gc"
 
 description = "A source-aware ABC notation parser, validator, AST JSON serializer, and pretty printer."
+
+import {
+  "moonbitlang/x@0.4.47",
+}
