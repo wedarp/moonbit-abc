@@ -8,6 +8,7 @@ fn item_text(item : MusicItem) -> String? {
     Bar(value, _) => Some(value)
     Repeat(value, _) => Some(value)
     Ornament(value, _) => Some(value)
+    InlineField(key, value, _) => Some("[" + key + ":" + value + "]")
   }
 }
 

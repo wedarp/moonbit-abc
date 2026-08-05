@@ -16,3 +16,9 @@ test "header parser stops treating body text as fields" {
   inspect(document.header_value("C"), content="D")
   inspect(document.items.length(), content="4")
 }
+
+///|
+test "header values preserve colons after the field separator" {
+  let document = parse("X: 1\nT: A: B\nK: C\nC\n")
+  inspect(document.header_value("T"), content="A: B")
+}

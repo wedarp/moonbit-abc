@@ -36,6 +36,8 @@
 | Temporary `debug_inspect(codes)` caused an expect-test failure after root-cause output was captured | 1 | Removed the diagnostic instrumentation and reran the full suite |
 | `@json.Json` was not a valid qualified type name in the installed MoonBit toolchain | 1 | Confirmed the prelude `Json` type and constructors with `moon ide doc`, then used unqualified `Json` in the serializer |
 | The CLI initially treated `moon run`'s executable name as a command argument | 1 | Verified the native smoke run, then skipped argv[0] in the executable entrypoint and reran the demo and invalid-file commands |
+| The first music-line splitter broke `[K: G]` into two tokens | 1 | Replaced whitespace splitting with a bracket/quote-aware scanner and added inline-field regression coverage |
+| Header parsing discarded text after a second colon | 1 | Added a source-preserving field separator scan and a repeated-colon regression test |
 
 ## 错误记录
 

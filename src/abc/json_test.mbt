@@ -6,6 +6,7 @@ test "json output includes a stable schema and source aware nodes" {
   inspect(encoded.contains("\"headers\""), content="true")
   inspect(encoded.contains("\"items\""), content="true")
   inspect(encoded.contains("\"line\""), content="true")
+  inspect(encoded.contains("\"duration\""), content="true")
 }
 
 ///|

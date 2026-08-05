@@ -24,3 +24,11 @@ test "repeat markers are parsed as music instead of header fields" {
   let document = parse("X: 1\nK: C\n|: C D |\n")
   inspect(document.has_item_kind("repeat"), content="true")
 }
+
+///|
+test "inline fields are preserved as structured music nodes" {
+  let document = parse("X: 1\nK: C\n[K: G] C\n")
+  inspect(document.has_item_kind("inline_field"), content="true")
+  let diagnostics = validate(document)
+  inspect(diagnostics.length(), content="0")
+}

@@ -19,6 +19,36 @@ pub struct Document {
 } derive(Debug, Eq, ToJson)
 
 ///|
+fn field_parts(line : String) -> Array[String] {
+  let chars = line.to_array()
+  let mut colon_index = -1
+  let mut index = 0
+  while index < chars.length() {
+    if chars[index] == ':' {
+      colon_index = index
+      break
+    }
+    index += 1
+  }
+  if colon_index < 0 {
+    return []
+  }
+  let key_chars = []
+  let value_chars = []
+  index = 0
+  while index < colon_index {
+    key_chars.push(chars[index])
+    index += 1
+  }
+  index = colon_index + 1
+  while index < chars.length() {
+    value_chars.push(chars[index])
+    index += 1
+  }
+  [String::from_array(key_chars), String::from_array(value_chars)]
+}
+
+///|
 pub fn parse(input : String) -> Document {
   let headers = []
   let voices = []
@@ -26,12 +56,10 @@ pub fn parse(input : String) -> Document {
   let lyrics = []
   let mut current_voice = ""
   let mut line_number = 1
+  let mut source_offset = 0
   for raw_line in input.split("\n") {
     let line = raw_line.to_owned()
-    let fields : Array[String] = line
-      .split(":")
-      .map(fn(part) { part.to_owned() })
-      .collect()
+    let fields = field_parts(line)
     if fields.length() >= 2 && is_field_key(fields[0]) {
       if fields[0] == "V" {
         current_voice = fields[1].trim().to_owned()
@@ -39,14 +67,15 @@ pub fn parse(input : String) -> Document {
         items.push(
           MusicItem::VoiceSwitch(
             current_voice,
-            point_span(line_number, 1, line.length()),
+            line_span(source_offset, line_number, line.length()),
           ),
         )
       } else if fields[0] == "w" || fields[0] == "W" {
         lyrics.push(Lyrics::{
           text: fields[1].trim().to_owned(),
-          span: point_span(line_number, 1, line.length()),
+          span: line_span(source_offset, line_number, line.length()),
         })
+        source_offset += line.length() + 1
         line_number += 1
         continue
       }
@@ -54,11 +83,11 @@ pub fn parse(input : String) -> Document {
         Header::Field(
           fields[0],
           fields[1].trim().to_owned(),
-          point_span(line_number, 1, line.length()),
+          line_span(source_offset, line_number, line.length()),
         ),
       )
     } else if line.trim() != "" && !line.has_prefix("%") {
-      let parsed_items = parse_music_line(line, line_number)
+      let parsed_items = parse_music_line(line, line_number, source_offset)
       for item in parsed_items {
         items.push(item)
         if current_voice != "" {
@@ -66,6 +95,7 @@ pub fn parse(input : String) -> Document {
         }
       }
     }
+    source_offset += line.length() + 1
     line_number += 1
   }
   { schema_version: "1", headers, voices, items, lyrics }
@@ -87,34 +117,32 @@ pub fn validate(document : Document) -> Array[Diagnostic] {
             diagnostics.push(
               diagnostic(Error, EmptyKey, "key header must not be empty", span),
             )
-          } else if value == "?" {
-            diagnostics.push(
-              diagnostic(
-                Error,
-                InvalidKey,
-                "key header is not recognized",
-                span,
-              ),
-            )
           } else {
-            has_key = true
+            match parse_key_signature(value) {
+              None =>
+                diagnostics.push(
+                  diagnostic(
+                    Error,
+                    InvalidKey,
+                    "key header is not recognized",
+                    span,
+                  ),
+                )
+              Some(_) => has_key = true
+            }
           }
         } else if key == "M" {
-          let meter_parts : Array[String] = value
-            .split("/")
-            .map(fn(part) { part.to_owned() })
-            .collect()
-          if meter_parts.length() != 2 ||
-            meter_parts[0] == "" ||
-            meter_parts[1] == "" {
-            diagnostics.push(
-              diagnostic(
-                Error,
-                InvalidMeter,
-                "meter must contain numerator and denominator",
-                span,
-              ),
-            )
+          match parse_meter(value) {
+            None =>
+              diagnostics.push(
+                diagnostic(
+                  Error,
+                  InvalidMeter,
+                  "meter must contain a valid numerator and denominator",
+                  span,
+                ),
+              )
+            Some(_) => ()
           }
         } else if key == "V" {
           if voice_ids.contains(value) {
@@ -175,6 +203,19 @@ pub fn validate(document : Document) -> Array[Diagnostic] {
           } else {
             repeat_depth -= 1
           }
+        }
+      MusicItem::Note(value, span) | MusicItem::Rest(value, span) =>
+        match parse_note_value(value) {
+          None =>
+            diagnostics.push(
+              diagnostic(
+                Error,
+                InvalidNote,
+                "music token is not a valid ABC note or rest",
+                span,
+              ),
+            )
+          Some(_) => ()
         }
       MusicItem::Raw(_, span) =>
         diagnostics.push(

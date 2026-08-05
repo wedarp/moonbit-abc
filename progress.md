@@ -20,3 +20,5 @@
 - Task 7 RED/GREEN 完成：JSON 与 pretty printer 测试先因公开 API 缺失而失败；随后加入带 schema 版本、源位置和节点 kind 的 JSON 输出、规范化 pretty printer 以及 schema 文档，`moon test src/abc` 为 16/16，`moon check --deny-warn --fmt src/abc`、`moon fmt --check` 与 `moon info` 通过。
 - Task 8 RED/GREEN 完成：CLI 测试先因命令行为未绑定而失败；随后拆分可测试的 `cmd/abc/cli` 包与可执行入口，加入 `check`、`format`、`json`、文件读取、示例和原生 smoke test，完整验证为 20/20。
 - Task 9 完成：加入双语 README、JSON schema、来源与范围说明、Apache-2.0 许可证引用和 GitHub Actions；CI 固定 MoonBit 0.10.3，并执行格式化、无警告检查、测试、接口生成、构建和 CLI 状态检查。
+- Task 10 RED/GREEN 完成：typed notation 测试先因解析 API 缺失而失败；随后加入音符/休止符时值、拍号、调号、声部 metadata、诊断位置和文档统计 API，测试扩展到 30 项。
+- Task 11 RED/GREEN 完成：inline field 测试先因空格词法切分而失败；随后加入括号/引号感知音乐扫描、inline field AST/JSON/pretty printer 和精确源偏移，同时修复 header 值中冒号被截断的问题。

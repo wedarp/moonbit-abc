@@ -21,6 +21,10 @@ let document = @abc.parse(source)
 let diagnostics = @abc.validate(document)
 let json = @abc.to_json(document).stringify(indent=2)
 let normalized = @abc.pretty_print(document)
+let notes = @abc.parse_note_value("^C'3/2")
+let meter = @abc.parse_meter("3+2/8")
+let key = @abc.parse_key_signature("Dm")
+let statistics = document.statistics()
 ```
 
 核心包刻意只依赖 MoonBit core；仓库中的 CLI 使用 `moonbitlang/x` 提供跨平台文件读取。

@@ -34,12 +34,14 @@ fn item_to_json(item : MusicItem) -> Json {
       Json::object({
         "kind": Json::string("note"),
         "value": Json::string(value),
+        "notation": note_value_to_json(value),
         "span": span_to_json(span),
       })
     Rest(value, span) =>
       Json::object({
         "kind": Json::string("rest"),
         "value": Json::string(value),
+        "notation": note_value_to_json(value),
         "span": span_to_json(span),
       })
     Bar(value, span) =>
@@ -57,6 +59,13 @@ fn item_to_json(item : MusicItem) -> Json {
     Ornament(value, span) =>
       Json::object({
         "kind": Json::string("ornament"),
+        "value": Json::string(value),
+        "span": span_to_json(span),
+      })
+    InlineField(key, value, span) =>
+      Json::object({
+        "kind": Json::string("inline_field"),
+        "key": Json::string(key),
         "value": Json::string(value),
         "span": span_to_json(span),
       })
@@ -83,6 +92,20 @@ fn lyrics_to_json(lyrics : Lyrics) -> Json {
     "text": Json::string(lyrics.text),
     "span": span_to_json(lyrics.span),
   })
+}
+
+///|
+fn note_value_to_json(value : String) -> Json {
+  match parse_note_value(value) {
+    None => Json::null()
+    Some(note) =>
+      Json::object({
+        "letter": Json::string(note.letter_name()),
+        "accidental": Json::string(note.accidental_name()),
+        "octave": Json::number(note.octave().to_double()),
+        "duration": Json::string(note.duration_text()),
+      })
+  }
 }
 
 ///|

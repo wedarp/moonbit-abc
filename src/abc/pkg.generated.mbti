@@ -10,6 +10,14 @@ pub fn normalize(Document) -> Document
 
 pub fn parse(String) -> Document
 
+pub fn parse_key_signature(String) -> KeySignature?
+
+pub fn parse_meter(String) -> Meter?
+
+pub fn parse_note_value(String) -> NoteValue?
+
+pub fn parse_voice_spec(String) -> VoiceSpec?
+
 pub fn pretty_print(Document) -> String
 
 pub fn scan(String) -> Array[Token]
@@ -21,6 +29,14 @@ pub fn validate(Document) -> Array[Diagnostic]
 // Errors
 
 // Types and methods
+pub enum Accidental {
+  Flat
+  Natural
+  Sharp
+  DoubleFlat
+  DoubleSharp
+} derive(Eq, ToJson, @debug.Debug)
+
 pub struct Diagnostic {
   severity : Severity
   code : DiagnosticCode
@@ -28,6 +44,10 @@ pub struct Diagnostic {
   span : Span
 } derive(Eq, ToJson, @debug.Debug)
 pub fn Diagnostic::code_name(Self) -> String
+pub fn Diagnostic::column(Self) -> Int
+pub fn Diagnostic::line(Self) -> Int
+pub fn Diagnostic::message(Self) -> String
+pub fn Diagnostic::severity_name(Self) -> String
 
 pub enum DiagnosticCode {
   EmptyKey
@@ -36,6 +56,7 @@ pub enum DiagnosticCode {
   DuplicateVoice
   InvalidMeter
   InvalidKey
+  InvalidNote
   UnmatchedRepeat
   InvalidField
   UnsupportedSyntax
@@ -52,18 +73,56 @@ pub fn Document::has_item_kind(Self, String) -> Bool
 pub fn Document::header_keys(Self) -> Array[String]
 pub fn Document::header_value(Self, String) -> String
 pub fn Document::header_values(Self, String) -> Array[String]
+pub fn Document::items_on_line(Self, Int) -> Int
 pub fn Document::lyrics_lines(Self) -> Array[String]
+pub fn Document::note_values(Self) -> Array[NoteValue]
+pub fn Document::statistics(Self) -> DocumentStatistics
 pub fn Document::voice_count(Self) -> Int
 pub fn Document::voice_items_count(Self, String) -> Int
+
+pub struct DocumentStatistics {
+  notes : Int
+  rests : Int
+  bars : Int
+  repeats : Int
+  ornaments : Int
+  raw : Int
+  voices : Int
+  lyrics : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn DocumentStatistics::bar_count(Self) -> Int
+pub fn DocumentStatistics::lyrics_count(Self) -> Int
+pub fn DocumentStatistics::note_count(Self) -> Int
+pub fn DocumentStatistics::repeat_count(Self) -> Int
+pub fn DocumentStatistics::rest_count(Self) -> Int
 
 pub enum Header {
   Field(String, String, Span)
 } derive(Eq, ToJson, @debug.Debug)
 
+pub struct KeySignature {
+  accidental : Accidental
+  tonic : String
+  mode : String
+  minor : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn KeySignature::is_minor(Self) -> Bool
+pub fn KeySignature::mode_name(Self) -> String
+pub fn KeySignature::tonic_name(Self) -> String
+
 pub struct Lyrics {
   text : String
   span : Span
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct Meter {
+  numerator_value : String
+  denominator_value : Int
+  additive : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Meter::denominator(Self) -> Int
+pub fn Meter::is_additive(Self) -> Bool
+pub fn Meter::numerator_text(Self) -> String
 
 pub enum MusicItem {
   Raw(String, Span)
@@ -72,9 +131,35 @@ pub enum MusicItem {
   Bar(String, Span)
   Repeat(String, Span)
   Ornament(String, Span)
+  InlineField(String, String, Span)
   VoiceSwitch(String, Span)
 } derive(Eq, ToJson, @debug.Debug)
 pub fn MusicItem::kind_name(Self) -> String
+
+pub enum NoteLetter {
+  A
+  B
+  C
+  D
+  E
+  F
+  G
+  Rest
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct NoteValue {
+  raw : String
+  letter : NoteLetter
+  accidental : Accidental
+  octave_value : Int
+  numerator : Int
+  denominator : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn NoteValue::accidental_name(Self) -> String
+pub fn NoteValue::duration_text(Self) -> String
+pub fn NoteValue::is_rest(Self) -> Bool
+pub fn NoteValue::letter_name(Self) -> String
+pub fn NoteValue::octave(Self) -> Int
 
 pub enum Severity {
   Error
@@ -87,6 +172,10 @@ pub struct Span {
   line : Int
   column : Int
 } derive(Eq, ToJson, @debug.Debug)
+pub fn Span::column(Self) -> Int
+pub fn Span::end(Self) -> Int
+pub fn Span::line(Self) -> Int
+pub fn Span::start(Self) -> Int
 
 pub struct Token {
   kind : TokenKind
@@ -109,6 +198,18 @@ pub struct Voice {
   id : String
   items : Array[MusicItem]
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct VoiceMetadata {
+  key : String
+  value : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct VoiceSpec {
+  voice_id : String
+  metadata_values : Array[VoiceMetadata]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn VoiceSpec::id(Self) -> String
+pub fn VoiceSpec::metadata(Self, String) -> String
 
 // Type aliases
 
