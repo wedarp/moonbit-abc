@@ -1,0 +1,47 @@
+name: MoonBit checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: format, check, test and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      # The action follows the MoonBit community workflow templates.
+      - name: Install MoonBit 0.10.3
+        uses: moonbitlang/setup@v0.1
+        with:
+          version: "0.10.3"
+
+      - name: Show toolchain
+        run: moon version
+
+      - name: Check formatting
+        run: moon fmt --check
+
+      - name: Check without warnings
+        run: moon check --deny-warn --fmt
+
+      - name: Run tests without warnings
+        run: moon test --deny-warn
+
+      - name: Refresh generated interfaces
+        run: moon info
+
+      - name: Ensure generated interfaces are committed
+        run: git diff --exit-code -- '**/pkg.generated.mbti'
+
+      - name: Build all packages
+        run: moon build
+
+      - name: Run CLI smoke test
+        run: moon run cmd/abc --target native check examples/demo.abc
+
+      - name: Check CLI failure status
+        run: '! moon run cmd/abc --target native check examples/invalid.abc'

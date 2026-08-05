@@ -35,6 +35,7 @@
 | `|:` was classified as a header because the parser only checked key length | 1 | Added a shared legal field-key predicate and regression test; repeat parsing now reaches the music parser |
 | Temporary `debug_inspect(codes)` caused an expect-test failure after root-cause output was captured | 1 | Removed the diagnostic instrumentation and reran the full suite |
 | `@json.Json` was not a valid qualified type name in the installed MoonBit toolchain | 1 | Confirmed the prelude `Json` type and constructors with `moon ide doc`, then used unqualified `Json` in the serializer |
+| The CLI initially treated `moon run`'s executable name as a command argument | 1 | Verified the native smoke run, then skipped argv[0] in the executable entrypoint and reran the demo and invalid-file commands |
 
 ## 错误记录
 
