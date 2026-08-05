@@ -32,3 +32,11 @@ test "inline fields are preserved as structured music nodes" {
   let diagnostics = validate(document)
   inspect(diagnostics.length(), content="0")
 }
+
+///|
+test "parser accepts windows line endings without leaking carriage returns" {
+  let document = parse("X: 1\r\nK: C\r\nC D |\r\n")
+  let diagnostics = validate(document)
+  inspect(diagnostics.length(), content="0")
+  inspect(document.has_item_kind("bar"), content="true")
+}

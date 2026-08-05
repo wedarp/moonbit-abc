@@ -5,22 +5,32 @@ fn parse_music_word(
   source_start : Int,
   column : Int,
 ) -> MusicItem {
-  let span = source_span(source_start, line_number, column, word.length())
-  match parse_inline_field(word, span) {
+  let normalized_word = word.replace(old="\r", new="").trim().to_owned()
+  let span = source_span(
+    source_start,
+    line_number,
+    column,
+    normalized_word.length(),
+  )
+  match parse_inline_field(normalized_word, span) {
     Some(item) => item
     None =>
-      if word == "|" || word == "||" {
-        MusicItem::Bar(word, span)
-      } else if word == "|:" || word == ":|" || word == "::" {
-        MusicItem::Repeat(word, span)
-      } else if word.has_prefix("~") || word.has_prefix("{") {
-        MusicItem::Ornament(word, span)
-      } else if word.has_prefix("z") || word.has_prefix("Z") {
-        MusicItem::Rest(word, span)
-      } else if word.has_prefix("!") {
-        MusicItem::Raw(word, span)
+      if normalized_word == "|" || normalized_word == "||" {
+        MusicItem::Bar(normalized_word, span)
+      } else if normalized_word == "|:" ||
+        normalized_word == ":|" ||
+        normalized_word == "::" {
+        MusicItem::Repeat(normalized_word, span)
+      } else if normalized_word.has_prefix("~") ||
+        normalized_word.has_prefix("{") {
+        MusicItem::Ornament(normalized_word, span)
+      } else if normalized_word.has_prefix("z") ||
+        normalized_word.has_prefix("Z") {
+        MusicItem::Rest(normalized_word, span)
+      } else if normalized_word.has_prefix("!") {
+        MusicItem::Raw(normalized_word, span)
       } else {
-        MusicItem::Note(word, span)
+        MusicItem::Note(normalized_word, span)
       }
   }
 }
