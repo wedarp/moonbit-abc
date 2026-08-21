@@ -16,11 +16,11 @@ The project intentionally stops at notation parsing and analysis. MIDI playback,
 ## Quick start
 
 ```bash
-moon run cmd/abc --target native check examples/demo.abc
-moon run cmd/abc --target native analyze examples/demo.abc
-moon run cmd/abc --target native format-check examples/demo.abc
-moon run cmd/abc --target native json examples/demo.abc
-moon run cmd/abc --target native benchmark examples/demo.abc
+moon run cmd/abc --target wasm-gc check examples/demo.abc
+moon run cmd/abc --target wasm-gc analyze examples/demo.abc
+moon run cmd/abc --target wasm-gc format-check examples/demo.abc
+moon run cmd/abc --target wasm-gc json examples/demo.abc
+moon run cmd/abc --target wasm-gc benchmark examples/demo.abc
 ```
 
 `check` exits with status 0 when no diagnostics are emitted and non-zero when the input is invalid. `format-check` reports whether canonical output differs from the source. `benchmark` reports exact fixture size, logical line count, repetition count, parsed node total, and analyzed note total; it does not fabricate wall-clock measurements.

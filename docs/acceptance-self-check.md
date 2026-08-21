@@ -13,7 +13,7 @@ This report records the local evidence used for the August MoonBit Hackathon acc
 | Tests | `moon test --deny-warn` → 102/102 | pass |
 | Generated interfaces | `moon info` | pass |
 | Build target | `moon build --target wasm-gc` | pass |
-| Runnable example | `moon run ... check examples/demo.abc` → `ok` | pass |
+| Runnable example | `moon run ... --target wasm-gc check examples/demo.abc` → `ok` | pass |
 | Boundary behavior | empty input, invalid input, mixed line endings, repeats, voices, lyrics | pass |
 | License | root `LICENSE`, Apache-2.0 in `moon.mod` | pass |
 | README | installation, API, layout, commands, schema, license | pass |
