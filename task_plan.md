@@ -12,7 +12,7 @@
 - [completed] 语法、语义分析、诊断与批量 CLI 扩展
 - [completed] 边界测试、真实基准与源码规模统计
 - [completed] CI、文档、许可证、版本与 Mooncakes 发布准备
-- [pending] Git 历史、GitHub 推送与 osc2026-guide 自查
+- [completed] Git 历史、GitHub 推送与 osc2026-guide 自查（GitHub `main`、Mooncakes `0.1.1` 已核验）
 
 ## Implementation plan
 

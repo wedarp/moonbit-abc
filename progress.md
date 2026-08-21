@@ -10,6 +10,7 @@
 - 本轮验收扩展完成：加入边界/基准夹具、可复核源码规模脚本、跨平台 stable-toolchain CI、手动 Mooncakes 发布工作流、README 重构与 `docs/acceptance-self-check.md`。
 - 最新验证：`moon test --deny-warn` 为 102/102，`moon build --target wasm-gc` 通过，生产非注释 MoonBit 源码为 8,522 行、73 个文件。
 - Windows native 构建已实际尝试，但被已安装运行时 `env.c` 中未声明 `rand_s` 的平台工具链错误阻断；该问题已记录并交由 CI 矩阵覆盖。
+- GitHub 活动账号核验为 `wedarp`，验收提交已推送到 `main`；Mooncakes 版本 `0.1.1` 实际发布返回 `200 OK`。
 
 ## 2026-08-05
 

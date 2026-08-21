@@ -25,7 +25,8 @@ The Windows native build was also attempted. It is currently blocked by the inst
 - `git remote show github` reports `main` as the remote default branch.
 - The configured remote is `https://github.com/wedarp/moonbit-abc.git`.
 - GitHub authentication must be checked in an environment that can read the user's `gh` configuration.
-- `moon publish` is provided as a manual GitHub Actions workflow using the `MOONCAKES_TOKEN` repository secret; the module namespace is `wedarp/moonbit-abc`.
+- The module namespace is `wedarp/moonbit-abc`; version `0.1.1` was published successfully after the `0.1.0` duplicate-version precheck.
+- `moon publish` is also provided as a manual GitHub Actions workflow using the `MOONCAKES_TOKEN` repository secret.
 - The proposal file is a local submission artifact and is intentionally not part of repository documentation changes.
 
 ## External checklist sources
