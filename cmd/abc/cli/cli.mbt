@@ -43,7 +43,13 @@ pub fn command_output(command : String, source : String) -> (Int, String) {
     }
     "format" => (0, format_source(source))
     "json" => (0, json_source(source) + "\n")
-    _ => (2, "Usage: moonbit-abc <check|format|json> <file>\n")
+    "analyze" => analyze_source(source)
+    "format-check" => format_check_source(source)
+    "benchmark" => (0, benchmark_source("input", source, 10))
+    _ =>
+      (
+        2, "Usage: moonbit-abc <check|format|format-check|json|analyze|benchmark> <file>\n",
+      )
   }
 }
 
@@ -54,6 +60,9 @@ pub fn command_file(command : String, path : String) -> (Int, String) {
   }
   let source = @fs.read_file_to_string(path) catch {
     _ => return (2, "cannot read file: " + path + "\n")
+  }
+  if command == "benchmark" {
+    return (0, benchmark_source(path, source, 10))
   }
   command_output(command, source)
 }

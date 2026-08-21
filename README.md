@@ -1,68 +1,77 @@
 # moonbit-abc
 
-一个面向民谣、教学和曲库处理的 ABC notation 解析器。它把 ABC 源文本解析为带源位置的结构化 AST，提供校验、规范化 JSON 和 pretty printer；项目不负责 MIDI 播放、MusicXML 转换或音频渲染，因此和这些方向保持清晰边界。
+Source-aware ABC notation tooling for MoonBit. The library parses ABC text into a location-preserving AST, validates musical structure, produces stable schema v1 JSON, normalizes notation, and exposes analysis primitives for editors and catalog pipelines.
 
-## 能做什么
+## Features
 
-- 解析 `X`、`T`、`M`、`L`、`K`、`V` 等 header，并保留扩展字段。
-- 解析 voice、note、rest、bar、repeat、ornament、chord、decoration、tuplet、comment 和 lyrics 节点，并保留 `%%` directive。
-- 用 `Span` 保留节点在源文本中的偏移、行号和列号。
-- 检查缺少的 `X`/`K`、非法 meter、重复 voice、未配对 repeat，以及暂未支持但已保留的原文语法。
-- 输出稳定的 schema v1 JSON，并按 `X/T/M/L/K/V` 与扩展字段排序后打印 ABC。
+- Header and directive parsing for common ABC fields, extensions, voices, lyrics, and comments.
+- Structured music nodes for notes, rests, bars, repeats, ornaments, chords, decorations, tuplets, and voice switches.
+- Source spans with line and column information for editor diagnostics and recovery workflows.
+- Semantic analysis for meters, voices, note ranges, duration totals, repeated sections, and quality rules.
+- Deterministic JSON schema v1 export and canonical pretty-printing.
+- A CLI for checking, formatting, JSON export, analysis, format checks, and repeatable benchmark runs.
 
-JSON 字段定义见 [`docs/json-schema.md`](docs/json-schema.md)，可运行样例见 [`examples/demo.abc`](examples/demo.abc)。
+The project intentionally stops at notation parsing and analysis. MIDI playback, audio rendering, and MusicXML conversion are outside this package's scope.
 
-代码仓库： [GitHub](https://github.com/wedarp/moonbit-abc) · [GitLink](https://gitlink.org.cn/Qqwkkr/moonbit-abc)
+## Quick start
 
-## 使用库
+```bash
+moon run cmd/abc --target native check examples/demo.abc
+moon run cmd/abc --target native analyze examples/demo.abc
+moon run cmd/abc --target native format-check examples/demo.abc
+moon run cmd/abc --target native json examples/demo.abc
+moon run cmd/abc --target native benchmark examples/demo.abc
+```
 
-在 `moon.pkg` 中依赖 `wedarp/moonbit-abc/src/abc` 后：
+`check` exits with status 0 when no diagnostics are emitted and non-zero when the input is invalid. `format-check` reports whether canonical output differs from the source. `benchmark` reports exact fixture size, logical line count, repetition count, parsed node total, and analyzed note total; it does not fabricate wall-clock measurements.
+
+## Library usage
+
+Add `wedarp/moonbit-abc/src/abc` to a MoonBit package and use the public API:
 
 ```moonbit
 let document = @abc.parse(source)
 let diagnostics = @abc.validate(document)
 let json = @abc.to_json(document).stringify(indent=2)
-let normalized = @abc.pretty_print(document)
-let notes = @abc.parse_note_value("^C'3/2")
-let meter = @abc.parse_meter("3+2/8")
-let key = @abc.parse_key_signature("Dm")
-let chord_notes = @abc.parse_chord_notes("[CEG]")
-let statistics = document.statistics()
+let canonical = @abc.pretty_print(document)
+let profile = @abc.music_profile(document)
 ```
 
-核心包刻意只依赖 MoonBit core；仓库中的 CLI 使用 `moonbitlang/x` 提供跨平台文件读取。
+Additional helpers cover note values, meters, key signatures, chord notes, source maps, semantic summaries, query indexes, diagnostic rendering, and batch analysis. The core package depends only on MoonBit core; the CLI uses `moonbitlang/x` for portable file access.
 
-## 使用 CLI
+## Repository layout
 
-```bash
-moon run cmd/abc --target native check examples/demo.abc
-moon run cmd/abc --target native format examples/demo.abc
-moon run cmd/abc --target native json examples/demo.abc
+```text
+src/abc/        reusable parser, AST, semantic analysis, diagnostics, and exports
+cmd/abc/        native CLI entry point and command tests
+examples/       runnable ABC inputs
+fixtures/abc/   boundary and benchmark inputs
+benchmarks/     reproducible benchmark instructions and evidence
+docs/           schema, source notes, and API documentation
+tools/          repository verification scripts
+.github/        CI and manual package-publish workflows
 ```
 
-`check` 在没有诊断时输出 `ok` 并返回 0；发现错误时返回非零状态。`format` 输出规范化 ABC，`json` 输出 schema v1 JSON。
-
-GitHub Actions 在 Ubuntu 上固定安装 MoonBit 0.10.3，并执行格式化、无警告检查、测试、接口生成、构建和 CLI smoke test。工作流位于 [`.github/workflows/test.yml`](.github/workflows/test.yml)。
-
-## 开发与验证
+## Development
 
 ```bash
-moon test
-moon check --deny-warn --fmt
 moon fmt --check
+moon check --deny-warn --fmt
+moon test --deny-warn
 moon info
+moon build --target native
+moon build --target wasm-gc
+powershell -File tools/count_moonbit_lines.ps1 -RequireMinimum 7000
 ```
 
-本机安装的工具链是 `moon 0.1.20260713`。比赛材料提到的 0.10.3 与当前可执行文件版本命名不同，因此仓库把严格门禁写成当前工具链实际支持的组合：`moon fmt --check`、`moon check --deny-warn --fmt`、`moon test --deny-warn` 和 `moon info`。CI 会在固定工具链上重复这些检查。
+GitHub Actions runs the same checks on Ubuntu, macOS, and Windows. The workflow installs the current stable MoonBit toolchain through the official installer and verifies formatting, warnings, generated interfaces, tests, builds, CLI behavior, boundary fixtures, and source-scale evidence.
 
-## 设计边界与后续方向
+Line-count evidence is generated by [`tools/count_moonbit_lines.ps1`](tools/count_moonbit_lines.ps1). It counts non-empty, non-documentation MoonBit lines and excludes tests and build/cache directories; the reported number is reproducible rather than a claim about algorithmic complexity.
 
-解析器目前是 source-aware 的轻量 AST，优先保障 header、声部、节拍、调号、重复记号、和弦、装饰音、连音、注释和歌词在编辑器/曲库场景中的可追踪性。后续可以在不破坏 schema 的前提下增加拍号语义、宏展开、引用解析、增量解析、更多 ABC 标准字段和编辑器诊断适配。
+## Schema and compatibility
 
-## 来源与生态核验
+The JSON contract is documented in [`docs/json-schema.md`](docs/json-schema.md). Schema version 1 keeps existing fields stable; new analysis and diagnostic data is additive. See [`docs/sources.md`](docs/sources.md) for notation references and licensing notes.
 
-设计以 [ABC notation standard v2.1](https://abcnotation.com/wiki/abc:standard:v2.1) 的字段和记号约定为边界，并参考 [MoonBit 官方文档](https://www.moonbitlang.com/docs) 的包、测试和格式化规范。2026-08-05 对 Mooncakes 的 `abc`、`notation`、`parser`、`music`、`midi` 和 `musicxml` 关键词做了核验，未发现功能高度重合且成熟的 ABC notation 解析器；发现的相邻项目主要是通用 SQL/parser、Markdown parser 或 MIDI/音乐绑定，因此本项目选择 source-aware ABC AST 这一交叉位置。完整记录见 [`findings.md`](findings.md)。
+## License
 
-## 许可证
-
-Apache License 2.0，见 [`LICENSE`](LICENSE)。
+Apache License 2.0. See [`LICENSE`](LICENSE).

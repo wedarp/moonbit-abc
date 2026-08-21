@@ -8,10 +8,11 @@
 
 - [completed] 比赛规则、生态重复度与工具链调研
 - [completed] 设计评审与实现方案确认
-- [in_progress] MoonBit 模块与解析器核心实现
-- [pending] 校验、JSON、pretty printer、CLI/示例与测试扩充
-- [pending] CI、文档、许可证、版本与 Mooncakes 发布准备
-- [pending] Git 历史、GitHub/GitLink 推送与 OSC2026 自检
+- [completed] 现状勘察与兼容性设计评审
+- [completed] 语法、语义分析、诊断与批量 CLI 扩展
+- [completed] 边界测试、真实基准与源码规模统计
+- [completed] CI、文档、许可证、版本与 Mooncakes 发布准备
+- [pending] Git 历史、GitHub 推送与 osc2026-guide 自查
 
 ## Implementation plan
 
@@ -25,6 +26,9 @@
 - GitHub 推送只使用用户已通过 `gh auth login` 建立的当前授权；不使用历史缓存账号。
 - GitLink 推送使用用户提供的账号认证，不将密码写入文件、提交或回复。
 - 选题应避开 MoonBit 生态已有成熟项目的高度重合，并保持可扩展边界。
+- 现有公开 API 与 JSON schema v1 必须向后兼容；申报书保持只读。
+- 生产 MoonBit 源码目标为真实有效 7,000 行以上，不计生成文件、依赖、构建目录、空行和注释。
+- README 不加入申报人、结项、唯一贡献者或申报书内部说明，不操作 GitLink。
 
 ## Errors Encountered
 

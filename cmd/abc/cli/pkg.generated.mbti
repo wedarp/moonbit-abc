@@ -2,11 +2,23 @@
 package "wedarp/moonbit-abc/cmd/abc/cli"
 
 // Values
+pub fn analyze_json_source(String) -> String
+
+pub fn analyze_source(String) -> (Int, String)
+
+pub fn batch_analyze_sources(Array[(String, String)]) -> String
+
+pub fn batch_check_sources(Array[(String, String)]) -> (Int, String)
+
+pub fn benchmark_source(String, String, Int) -> String
+
 pub fn check_source(String) -> String
 
 pub fn command_file(String, String) -> (Int, String)
 
 pub fn command_output(String, String) -> (Int, String)
+
+pub fn format_check_source(String) -> (Int, String)
 
 pub fn format_source(String) -> String
 
@@ -19,4 +31,3 @@ pub fn json_source(String) -> String
 // Type aliases
 
 // Traits
-

@@ -8,7 +8,9 @@ fn main {
       @sys.exit(code)
     }
     _ => {
-      println("Usage: moonbit-abc <check|format|json> <file>")
+      println(
+        "Usage: moonbit-abc <check|format|format-check|json|analyze|benchmark> <file>",
+      )
       @sys.exit(2)
     }
   }

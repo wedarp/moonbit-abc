@@ -1,5 +1,16 @@
 # 工作进度
 
+## 2026-08-21
+
+- 恢复中断会话并核对仓库状态：`wedarp/moonbit-abc`，当前分支 `main` 跟踪 `github/main`；申报书是唯一未跟踪文件，未被修改。
+- 完成验收扩展的 brainstorming 设计评审，确认保持公开 API/JSON schema v1 兼容，采用解析—语义分析—诊断—规范化—CLI 完整工具链路线。
+- 写入并自检设计文档 `docs/superpowers/specs/2026-08-21-moonbit-abc-hackathon-acceptance-design.md`；下一步等待用户审阅后编写实现计划。
+- 用户批准设计与实施计划，开始执行；当前工具链基线为 `moon 0.1.20260814`，`moon fmt --check`、`moon check --deny-warn --fmt` 和全量测试均通过，基线为 40/40。
+- Task 2 TDD RED/GREEN 完成：先加入源码位置与 token 边界失败测试，随后加入 `SourceMap`、混合换行处理、token 起止偏移和列号 API；`moon test src/abc` 为 38/38，格式和无警告检查通过。
+- 本轮验收扩展完成：加入边界/基准夹具、可复核源码规模脚本、跨平台 stable-toolchain CI、手动 Mooncakes 发布工作流、README 重构与 `docs/acceptance-self-check.md`。
+- 最新验证：`moon test --deny-warn` 为 102/102，`moon build --target wasm-gc` 通过，生产非注释 MoonBit 源码为 8,522 行、73 个文件。
+- Windows native 构建已实际尝试，但被已安装运行时 `env.c` 中未声明 `rand_s` 的平台工具链错误阻断；该问题已记录并交由 CI 矩阵覆盖。
+
 ## 2026-08-05
 
 - 读取并启用 `using-superpowers`、`brainstorming`、`planning-with-files`、MoonBit 工程/方向、验证和代码审查指引。

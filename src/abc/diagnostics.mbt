@@ -17,6 +17,10 @@ pub enum DiagnosticCode {
   UnmatchedRepeat
   InvalidField
   UnsupportedSyntax
+  UnderfullMeasure
+  OverfullMeasure
+  VoiceConflict
+  LyricMismatch
 } derive(Debug, Eq, ToJson)
 
 ///|
@@ -51,6 +55,10 @@ pub fn Diagnostic::code_name(self : Diagnostic) -> String {
     UnmatchedRepeat => "unmatched_repeat"
     InvalidField => "invalid_field"
     UnsupportedSyntax => "unsupported_syntax"
+    UnderfullMeasure => "underfull_measure"
+    OverfullMeasure => "overfull_measure"
+    VoiceConflict => "voice_conflict"
+    LyricMismatch => "lyric_mismatch"
   }
 }
 

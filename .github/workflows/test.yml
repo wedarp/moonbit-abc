@@ -1,47 +1,65 @@
-name: MoonBit checks
+name: Check and test
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: format, check, test and build
-    runs-on: ubuntu-latest
+  verify:
+    name: verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Check out source
         uses: actions/checkout@v4
-
-      # The action follows the MoonBit community workflow templates.
-      - name: Install MoonBit 0.10.3
-        uses: moonbitlang/setup@v0.1
         with:
-          version: "0.10.3"
-
-      - name: Show toolchain
-        run: moon version
-
+          persist-credentials: false
+      - name: Install MoonBit on Unix
+        if: runner.os != 'Windows'
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Install MoonBit on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+          irm https://cli.moonbitlang.com/install/powershell.ps1 | iex
+          "$HOME/.moon/bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+      - name: Show stable toolchain
+        run: moon version --all
+      - name: Update package metadata
+        run: moon update
       - name: Check formatting
         run: moon fmt --check
-
       - name: Check without warnings
         run: moon check --deny-warn --fmt
-
       - name: Run tests without warnings
         run: moon test --deny-warn
-
       - name: Refresh generated interfaces
         run: moon info
-
       - name: Ensure generated interfaces are committed
-        run: git diff --exit-code -- '**/pkg.generated.mbti'
-
-      - name: Build all packages
-        run: moon build
-
-      - name: Run CLI smoke test
-        run: moon run cmd/abc --target native check examples/demo.abc
-
-      - name: Check CLI failure status
-        run: '! moon run cmd/abc --target native check examples/invalid.abc'
+        run: git diff --exit-code
+      - name: Build native and wasm targets
+        run: |
+          moon build --target native
+          moon build --target wasm-gc
+      - name: Verify source scale
+        shell: pwsh
+        run: ./tools/count_moonbit_lines.ps1 -RequireMinimum 7000
+      - name: Run CLI and boundary fixtures
+        run: |
+          moon run cmd/abc --target native check examples/demo.abc
+          moon run cmd/abc --target native analyze fixtures/abc/benchmark-medium.abc
+          ! moon run cmd/abc --target native format-check fixtures/abc/boundary-lines.abc
+          moon run cmd/abc --target native benchmark fixtures/abc/benchmark-large.abc
+          ! moon run cmd/abc --target native check fixtures/abc/boundary-empty.abc
+          ! moon run cmd/abc --target native check examples/invalid.abc

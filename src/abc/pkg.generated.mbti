@@ -6,11 +6,255 @@ import {
 }
 
 // Values
+pub fn all_evidence_pass(Array[(String, Bool)]) -> Bool
+
+pub fn analyze_document(Document) -> ScoreSummary
+
+pub fn api_contract() -> ApiContract
+
+pub fn api_hover(String) -> String
+
+pub fn api_names_starting(String) -> Array[String]
+
+pub fn api_surface() -> Array[String]
+
+pub fn api_surface_text() -> String
+
+pub fn apply_diagnostic_policy(Array[Diagnostic], DiagnosticPolicy) -> Array[Diagnostic]
+
+pub fn audit_evidence_ok() -> Bool
+
+pub fn balanced_symbols() -> Array[String]
+
+pub fn batch_plan(Array[(String, Document)]) -> BatchPlan
+
+pub fn benchmark_suite(Array[(String, String)], Int) -> BenchmarkSuite
+
+pub fn blocker_count(Array[String]) -> Int
+
+pub fn blocker_text(Array[String]) -> String
+
+pub fn build_commands(Array[String]) -> Array[String]
+
+pub fn build_document_report(Document, String) -> DocumentReport
+
+pub fn build_evidence_ok() -> Bool
+
+pub fn capability_category_count(String) -> Int
+
+pub fn catalog_documents(Array[Document]) -> CatalogReport
+
+pub fn catalog_query() -> CatalogQuery
+
+pub fn check_constraints(Document, Constraints) -> ConstraintResult
+
+pub fn cli_command_description(String) -> String
+
+pub fn cli_command_rows() -> Array[(String, String)]
+
+pub fn cli_commands() -> Array[String]
+
+pub fn cli_hover(String) -> String
+
+pub fn command_is_build(String) -> Bool
+
+pub fn command_is_scale(String) -> Bool
+
+pub fn command_is_test(String) -> Bool
+
+pub fn command_is_verification(String) -> Bool
+
+pub fn compare_analysis(Document, Document) -> AnalysisComparison
+
+pub fn compare_format(String) -> FormatDiff
+
+pub fn constraint_fields() -> Array[(String, String)]
+
+pub fn constraint_score(Document, Constraints) -> Int
+
+pub fn constraints_pass(Document, Constraints) -> Bool
+
+pub fn constraints_text(Constraints) -> String
+
+pub fn construct_category(String) -> String
+
+pub fn construct_description(String) -> String
+
+pub fn construct_descriptions() -> Array[(String, String)]
+
+pub fn construct_is_semantic(String) -> Bool
+
+pub fn contract_checks(Document) -> Array[(String, Bool)]
+
+pub fn contract_checks_text(Document) -> String
+
+pub fn contract_document_ok(Document) -> Bool
+
+pub fn contract_failure_count(Document) -> Int
+
+pub fn contract_missing_apis() -> Array[String]
+
+pub fn contract_names_ok() -> Bool
+
+pub fn decode_fields(String) -> Array[FieldRecord]
+
+pub fn default_constraints() -> Constraints
+
+pub fn diagnostic_catalog() -> Array[String]
+
+pub fn diagnostic_is_error(String) -> Bool
+
+pub fn diagnostic_matrix() -> String
+
+pub fn diagnostic_policy() -> DiagnosticPolicy
+
+pub fn diagnostic_remediation(String) -> String
+
+pub fn diagnostic_row(Diagnostic, String) -> String
+
+pub fn document_fingerprint(Document) -> String
+
+pub fn document_summary_lines(Document) -> Array[String]
+
+pub fn document_summary_pairs(Document) -> Array[(String, String)]
+
+pub fn document_summary_text(Document) -> String
+
+pub fn document_symbols(Document) -> Array[(String, String, Int)]
+
+pub fn documentation_category(String) -> Array[DocumentationEntry]
+
+pub fn documentation_entry(String) -> DocumentationEntry
+
+pub fn documentation_index() -> Array[DocumentationEntry]
+
+pub fn documentation_markdown() -> String
+
+pub fn documented_api_count() -> Int
+
+pub fn documented_api_names() -> Array[String]
+
+pub fn documented_command_count() -> Int
+
+pub fn documented_stable_api_surface() -> Bool
+
+pub fn duplicate_titles(Array[Document]) -> Array[String]
+
+pub fn editor_diagnostics(Document, String) -> Array[EditorDiagnostic]
+
+pub fn editor_field_completions() -> Array[String]
+
+pub fn editor_quality_profile() -> QualityProfile
+
+pub fn encode_fields(Array[FieldRecord], String) -> String
+
+pub fn ensure_directive(String, String) -> String
+
+pub fn error_diagnostic_codes() -> Array[String]
+
+pub fn escape_field_value(String) -> String
+
+pub fn evidence_heading(String) -> String
+
+pub fn evidence_label(String) -> String
+
+pub fn evidence_labels() -> Array[String]
+
+pub fn evidence_row(String, Bool) -> String
+
+pub fn evidence_rows(Array[(String, Bool)]) -> Array[String]
+
+pub fn evidence_status(Bool) -> String
+
+pub fn export_document(Document) -> ExportedDocument
+
+pub fn extension_capabilities() -> Array[ExtensionCapability]
+
+pub fn extension_layer_dependencies(String) -> Array[String]
+
+pub fn extension_layers() -> Array[String]
+
+pub fn extension_matrix() -> String
+
+pub fn extension_summary() -> String
+
+pub fn field_values(String, String) -> Array[String]
+
+pub fn filter_catalog(Array[Document], CatalogQuery) -> Array[Document]
+
+pub fn format_document(Document, NormalizeOptions) -> String
+
+pub fn format_evidence(Array[(String, Bool)]) -> String
+
+pub fn grammar_for(String) -> (String, String, String)
+
+pub fn grammar_table() -> Array[(String, String, String)]
+
+pub fn grammar_table_text() -> String
+
+pub fn group_catalog_by_key(Array[Document]) -> Array[(String, Int)]
+
+pub fn has_api(String) -> Bool
+
+pub fn has_cli_command(String) -> Bool
+
+pub fn has_project_section(String) -> Bool
+
+pub fn header_rule_for(String) -> HeaderKind
+
+pub fn index_document(Document, String) -> DocumentIndex
+
+pub fn is_balanced_abc(String) -> Bool
+
+pub fn is_supported_and_tested(String) -> Bool
+
+pub fn join_stream_chunks(Array[String]) -> String
+
+pub fn key_scale(String, Int) -> Array[String]
+
+pub fn known_evidence_category(String) -> Bool
+
+pub fn library_api_links() -> Array[(String, String)]
+
+pub fn lyric_alignment(Document) -> LyricAlignment
+
+pub fn merge_diagnostics(Array[Array[Diagnostic]]) -> Array[Diagnostic]
+
+pub fn merge_documents(Array[Document]) -> Document
+
+pub fn merge_evidence(Array[(String, Bool)], Array[(String, Bool)]) -> Array[(String, Bool)]
+
+pub fn meter_budget(String) -> Rational
+
+pub fn missing_evidence(Array[(String, Bool)]) -> Array[String]
+
+pub fn missing_headers(Array[Document], Array[String]) -> Array[String]
+
+pub fn music_profile(Document) -> MusicProfile
+
+pub fn new_rational(Int, Int) -> Rational
+
+pub fn no_blockers(Array[String]) -> Bool
+
+pub fn normalization_options() -> NormalizeOptions
+
 pub fn normalize(Document) -> Document
+
+pub fn normalize_line_endings(String) -> String
+
+pub fn normalize_with(Document, NormalizeOptions) -> Document
+
+pub fn note_duration(NoteValue?) -> Rational
+
+pub fn package_metadata() -> PackageMetadata
 
 pub fn parse(String) -> Document
 
 pub fn parse_chord_notes(String) -> Array[NoteValue]
+
+pub fn parse_event_log(String) -> ParseEventLog
+
+pub fn parse_field_rule(String) -> HeaderRule
 
 pub fn parse_key_signature(String) -> KeySignature?
 
@@ -20,13 +264,189 @@ pub fn parse_note_value(String) -> NoteValue?
 
 pub fn parse_voice_spec(String) -> VoiceSpec?
 
+pub fn passing_evidence(Array[(String, Bool)]) -> Int
+
+pub fn pitch_class_of(NoteValue) -> Int
+
 pub fn pretty_print(Document) -> String
+
+pub fn pretty_print_with(Document, NormalizeOptions) -> String
+
+pub fn project_docs_consistent() -> Bool
+
+pub fn project_docs_markdown() -> String
+
+pub fn project_link(String) -> String
+
+pub fn project_link_labels() -> Array[String]
+
+pub fn project_link_targets() -> Array[String]
+
+pub fn project_links() -> Array[(String, String)]
+
+pub fn project_section_count() -> Int
+
+pub fn project_sections() -> Array[String]
+
+pub fn quality_evidence_ok() -> Bool
+
+pub fn quality_options() -> QualityOptions
+
+pub fn quality_report(Document, QualityOptions) -> QualityReport
+
+pub fn query_document(Document, String, QueryOptions, String) -> Array[QueryMatch]
+
+pub fn query_options() -> QueryOptions
+
+pub fn recognized_evidence_count(Array[String]) -> Int
+
+pub fn record_index(String) -> RecordIndex
+
+pub fn recover_document(String) -> RecoveredDocument
+
+pub fn release_audit(Document, String, Int) -> ReleaseAudit
+
+pub fn release_command_category(String) -> String
+
+pub fn release_command_count() -> Int
+
+pub fn release_commands() -> Array[String]
+
+pub fn release_commands_in(String) -> Array[String]
+
+pub fn release_commands_text() -> String
+
+pub fn release_evidence_complete() -> Bool
+
+pub fn release_evidence_flags() -> Array[(String, Bool)]
+
+pub fn release_evidence_passed() -> Int
+
+pub fn release_evidence_text() -> String
+
+pub fn release_has_build_matrix() -> Bool
+
+pub fn release_has_quality_matrix() -> Bool
+
+pub fn release_has_source_gate() -> Bool
+
+pub fn release_matrix() -> Array[ReleaseMatrixRow]
+
+pub fn release_matrix_missing() -> Array[String]
+
+pub fn release_matrix_ok() -> Bool
+
+pub fn release_matrix_passed() -> Int
+
+pub fn release_matrix_summary() -> String
+
+pub fn release_matrix_text() -> String
+
+pub fn release_notes_text() -> String
+
+pub fn remove_comment_lines(String) -> String
+
+pub fn render_quality_report(QualityReport, String) -> String
+
+pub fn replace_header_value(String, String, String) -> String
+
+pub fn rewrite_normalized(String) -> String
+
+pub fn rewrite_single_title(String, String) -> String
+
+pub fn rewrite_title(String, String) -> String
+
+pub fn run_quality_profile(Document, QualityProfile) -> QualityReport
+
+pub fn run_validation_rules(Document, ValidationProfile) -> RuleResult
+
+pub fn same_document(Document, Document) -> Bool
 
 pub fn scan(String) -> Array[Token]
 
+pub fn scan_music_lexemes(String) -> Array[MusicLexeme]
+
+pub fn schema_issue_count(Document) -> Int
+
+pub fn schema_issues(Document) -> Array[String]
+
+pub fn schema_json_text(Document) -> String
+
+pub fn schema_snapshot(Document) -> SchemaSnapshot
+
+pub fn schema_valid(Document) -> Bool
+
+pub fn select_items(Document, String) -> Array[MusicItem]
+
+pub fn semantic_construct_count() -> Int
+
+pub fn semantic_windows(Document, Int) -> Array[SemanticWindow]
+
+pub fn smoke_evidence_ok() -> Bool
+
+pub fn sort_catalog_by_title(Array[Document]) -> Array[Document]
+
+pub fn sort_diagnostics(Array[Diagnostic]) -> Array[Diagnostic]
+
+pub fn source_cursor(String) -> SourceCursor
+
+pub fn source_map(String) -> SourceMap
+
+pub fn source_metrics(String) -> SourceMetrics
+
+pub fn source_quality_factors(String) -> Array[(String, Int)]
+
+pub fn source_quality_score(String) -> Int
+
+pub fn source_slice(String, Int, Int) -> String
+
+pub fn source_statistics(String) -> SourceStatistics
+
+pub fn spans_well_formed(Document) -> Bool
+
+pub fn split_abc_records(String) -> Array[String]
+
+pub fn split_balanced_words(String) -> Array[String]
+
+pub fn stable_capability_count() -> Int
+
+pub fn stream_chunks(String, Int) -> Array[String]
+
+pub fn strict_quality_profile() -> QualityProfile
+
+pub fn supported_construct_count() -> Int
+
+pub fn supported_constructs() -> Array[String]
+
+pub fn symbols_by_key(Document, String) -> Array[(String, Int)]
+
+pub fn test_commands(Array[String]) -> Array[String]
+
+pub fn test_evidence_ok() -> Bool
+
+pub fn tested_capability_count() -> Int
+
 pub fn to_json(Document) -> Json
 
+pub fn transpose_note(NoteValue?, Int) -> String
+
+pub fn unescape_field_value(String) -> String
+
 pub fn validate(Document) -> Array[Diagnostic]
+
+pub fn validation_profile() -> ValidationProfile
+
+pub fn verification_commands(Array[String]) -> Array[String]
+
+pub fn voice_note_counts(Document) -> Array[(String, Int)]
+
+pub fn voice_pitch_ranges(Document) -> Array[(String, VoicePitchRange)]
+
+pub fn voice_timeline(Document) -> Array[(String, Int)]
+
+pub fn walk_document(Document) -> WalkSummary
+
+pub fn warning_diagnostic_codes() -> Array[String]
 
 // Errors
 
@@ -38,6 +458,128 @@ pub enum Accidental {
   DoubleFlat
   DoubleSharp
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct AnalysisComparison {
+  note_delta_value : Int
+  rest_delta_value : Int
+  measure_delta_value : Int
+  duration_delta_value : Rational
+} derive(Eq, ToJson, @debug.Debug)
+pub fn AnalysisComparison::changed(Self) -> Bool
+pub fn AnalysisComparison::duration_delta(Self) -> Rational
+pub fn AnalysisComparison::measure_delta(Self) -> Int
+pub fn AnalysisComparison::note_delta(Self) -> Int
+pub fn AnalysisComparison::rest_delta(Self) -> Int
+pub fn AnalysisComparison::text(Self) -> String
+
+pub struct ApiContract {
+  version_value : String
+  stable_names : Array[String]
+  invariants : Array[String]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ApiContract::compatible(Self, String) -> Bool
+pub fn ApiContract::invariant_count(Self) -> Int
+pub fn ApiContract::invariants(Self) -> Array[String]
+pub fn ApiContract::schema_version(Self) -> String
+pub fn ApiContract::stable_names(Self) -> Array[String]
+pub fn ApiContract::text(Self) -> String
+
+pub struct BatchEntry {
+  path_value : String
+  status_value : String
+  errors : Int
+  warnings : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn BatchEntry::error_count(Self) -> Int
+pub fn BatchEntry::path(Self) -> String
+pub fn BatchEntry::status(Self) -> String
+pub fn BatchEntry::warning_count(Self) -> Int
+
+pub struct BatchPlan {
+  entries : Array[BatchEntry]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn BatchPlan::entry(Self, String) -> BatchEntry
+pub fn BatchPlan::failed_count(Self) -> Int
+pub fn BatchPlan::record_count(Self) -> Int
+pub fn BatchPlan::text(Self) -> String
+
+pub struct BenchmarkResult {
+  name_value : String
+  bytes_value : Int
+  lines_value : Int
+  runs_value : Int
+  nodes_value : Int
+  notes_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn BenchmarkResult::bytes(Self) -> Int
+pub fn BenchmarkResult::lines(Self) -> Int
+pub fn BenchmarkResult::name(Self) -> String
+pub fn BenchmarkResult::nodes(Self) -> Int
+pub fn BenchmarkResult::notes(Self) -> Int
+pub fn BenchmarkResult::runs(Self) -> Int
+
+pub struct BenchmarkSuite {
+  results : Array[BenchmarkResult]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn BenchmarkSuite::case_count(Self) -> Int
+pub fn BenchmarkSuite::result(Self, String) -> BenchmarkResult
+pub fn BenchmarkSuite::text(Self) -> String
+
+pub struct CatalogQuery {
+  title_pattern : String
+  key_value : String
+  composer_value : String
+  errors_only : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn CatalogQuery::with_composer(Self, String) -> Self
+pub fn CatalogQuery::with_errors(Self, Bool) -> Self
+pub fn CatalogQuery::with_key(Self, String) -> Self
+pub fn CatalogQuery::with_title(Self, String) -> Self
+
+pub struct CatalogReport {
+  documents : Array[Document]
+  titles_value : Array[String]
+  composers : Array[String]
+  keys : Array[String]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn CatalogReport::document_count(Self) -> Int
+pub fn CatalogReport::group_count(Self, String) -> Int
+pub fn CatalogReport::key_count(Self, String) -> Int
+pub fn CatalogReport::titles(Self) -> Array[String]
+
+pub struct ConstraintResult {
+  violations : Array[String]
+  score_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ConstraintResult::score(Self) -> Int
+pub fn ConstraintResult::text(Self) -> String
+pub fn ConstraintResult::violation_count(Self) -> Int
+pub fn ConstraintResult::violations(Self) -> Array[String]
+
+pub struct Constraints {
+  minimum_notes : Int
+  maximum_raw : Int
+  require_title : Bool
+  require_meter : Bool
+  require_key : Bool
+  require_balanced : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Constraints::with_balanced(Self, Bool) -> Self
+pub fn Constraints::with_key(Self, Bool) -> Self
+pub fn Constraints::with_maximum_raw(Self, Int) -> Self
+pub fn Constraints::with_meter(Self, Bool) -> Self
+pub fn Constraints::with_minimum_notes(Self, Int) -> Self
+pub fn Constraints::with_title(Self, Bool) -> Self
+
+pub struct CursorPosition {
+  offset_value : Int
+  line_value : Int
+  column_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn CursorPosition::column(Self) -> Int
+pub fn CursorPosition::line(Self) -> Int
+pub fn CursorPosition::offset(Self) -> Int
+pub fn CursorPosition::text(Self) -> String
 
 pub struct Diagnostic {
   severity : Severity
@@ -63,7 +605,39 @@ pub enum DiagnosticCode {
   UnmatchedRepeat
   InvalidField
   UnsupportedSyntax
+  UnderfullMeasure
+  OverfullMeasure
+  VoiceConflict
+  LyricMismatch
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct DiagnosticPolicy {
+  minimum_value : String
+  maximum_errors : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn DiagnosticPolicy::allows_exit(Self, Array[Diagnostic]) -> Bool
+pub fn DiagnosticPolicy::error_budget(Self) -> Int
+pub fn DiagnosticPolicy::max_errors(Self, Int) -> Self
+pub fn DiagnosticPolicy::minimum(Self, String) -> Self
+pub fn DiagnosticPolicy::minimum_name(Self) -> String
+
+pub enum DiffKind {
+  Added
+  Removed
+  Changed
+  Equal
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct DiffLine {
+  number : Int
+  kind : DiffKind
+  original : String
+  normalized : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn DiffLine::kind_name(Self) -> String
+pub fn DiffLine::line(Self) -> Int
+pub fn DiffLine::normalized(Self) -> String
+pub fn DiffLine::original(Self) -> String
 
 pub struct Document {
   schema_version : String
@@ -83,6 +657,33 @@ pub fn Document::note_values(Self) -> Array[NoteValue]
 pub fn Document::statistics(Self) -> DocumentStatistics
 pub fn Document::voice_count(Self) -> Int
 pub fn Document::voice_items_count(Self, String) -> Int
+
+pub struct DocumentIndex {
+  document : Document
+  source : String
+  titles_value : Array[String]
+  header_map : Array[(String, String)]
+  item_kinds : Array[String]
+} derive(Eq, @debug.Debug)
+pub fn DocumentIndex::count_kind(Self, String) -> Int
+pub fn DocumentIndex::find_text(Self, String) -> Array[QueryMatch]
+pub fn DocumentIndex::header(Self, String) -> String
+pub fn DocumentIndex::lines_with_kind(Self, String) -> Array[Int]
+pub fn DocumentIndex::title(Self) -> String
+pub fn DocumentIndex::titles(Self) -> Array[String]
+
+pub struct DocumentReport {
+  metrics : Array[ReportMetric]
+  keys : Array[String]
+  kinds : Array[(String, Int)]
+  quality : QualityReport
+} derive(Eq, ToJson, @debug.Debug)
+pub fn DocumentReport::header_keys(Self) -> Array[String]
+pub fn DocumentReport::kind_count(Self, String) -> Int
+pub fn DocumentReport::metric(Self, String) -> String
+pub fn DocumentReport::quality(Self) -> QualityReport
+pub fn DocumentReport::rows(Self) -> Array[ReportMetric]
+pub fn DocumentReport::text(Self) -> String
 
 pub struct DocumentStatistics {
   notes : Int
@@ -108,10 +709,112 @@ pub fn DocumentStatistics::repeat_count(Self) -> Int
 pub fn DocumentStatistics::rest_count(Self) -> Int
 pub fn DocumentStatistics::tuplet_count(Self) -> Int
 
+pub struct DocumentationEntry {
+  name_value : String
+  category_value : String
+  description_value : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn DocumentationEntry::category(Self) -> String
+pub fn DocumentationEntry::description(Self) -> String
+pub fn DocumentationEntry::name(Self) -> String
+
+pub struct EditorDiagnostic {
+  code_value : String
+  severity_value : String
+  message_value : String
+  range_value : EditorRange
+  hint_value : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn EditorDiagnostic::code(Self) -> String
+pub fn EditorDiagnostic::hint(Self) -> String
+pub fn EditorDiagnostic::message(Self) -> String
+pub fn EditorDiagnostic::range(Self) -> EditorRange
+pub fn EditorDiagnostic::severity(Self) -> String
+
+pub struct EditorRange {
+  start_line_value : Int
+  start_column_value : Int
+  end_line_value : Int
+  end_column_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn EditorRange::end_column(Self) -> Int
+pub fn EditorRange::end_line(Self) -> Int
+pub fn EditorRange::start_column(Self) -> Int
+pub fn EditorRange::start_line(Self) -> Int
+
+pub struct ExportedDocument {
+  schema_value : String
+  fields : Array[(String, String)]
+  body : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ExportedDocument::field(Self, String) -> String
+pub fn ExportedDocument::fields(Self) -> Array[(String, String)]
+pub fn ExportedDocument::schema(Self) -> String
+pub fn ExportedDocument::text(Self) -> String
+
+pub struct ExtensionCapability {
+  name_value : String
+  category_value : String
+  stable_value : Bool
+  tested_value : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ExtensionCapability::category(Self) -> String
+pub fn ExtensionCapability::name(Self) -> String
+pub fn ExtensionCapability::stable(Self) -> Bool
+pub fn ExtensionCapability::tested(Self) -> Bool
+
+pub struct FieldRecord {
+  key_value : String
+  value_value : String
+  line_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn FieldRecord::key(Self) -> String
+pub fn FieldRecord::line(Self) -> Int
+pub fn FieldRecord::value(Self) -> String
+
+pub struct FormatDiff {
+  source : String
+  normalized : String
+  rows : Array[DiffLine]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn FormatDiff::changed_line_count(Self) -> Int
+pub fn FormatDiff::is_changed(Self) -> Bool
+pub fn FormatDiff::normalized(Self) -> String
+pub fn FormatDiff::normalized_line_count(Self) -> Int
+pub fn FormatDiff::original(Self) -> String
+pub fn FormatDiff::original_line_count(Self) -> Int
+pub fn FormatDiff::rows(Self) -> Array[DiffLine]
+pub fn FormatDiff::text(Self) -> String
+
 pub enum Header {
   Field(String, String, Span)
   Directive(String, Span)
 } derive(Eq, ToJson, @debug.Debug)
+
+pub enum HeaderKind {
+  Reference
+  Title
+  Meter
+  UnitLength
+  Key
+  Voice
+  Lyrics
+  Text
+  Unknown
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct HeaderRule {
+  field_key : String
+  field_value : String
+  kind : HeaderKind
+  repeatable : Bool
+  valid : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn HeaderRule::can_repeat(Self) -> Bool
+pub fn HeaderRule::is_valid(Self) -> Bool
+pub fn HeaderRule::key(Self) -> String
+pub fn HeaderRule::kind_name(Self) -> String
+pub fn HeaderRule::value(Self) -> String
 
 pub struct KeySignature {
   accidental : Accidental
@@ -123,10 +826,42 @@ pub fn KeySignature::is_minor(Self) -> Bool
 pub fn KeySignature::mode_name(Self) -> String
 pub fn KeySignature::tonic_name(Self) -> String
 
+pub struct LyricAlignment {
+  slots_value : Int
+  covered_value : Int
+  missing_value : Int
+  extra_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn LyricAlignment::covered(Self) -> Int
+pub fn LyricAlignment::extra(Self) -> Int
+pub fn LyricAlignment::missing(Self) -> Int
+pub fn LyricAlignment::slots(Self) -> Int
+
 pub struct Lyrics {
   text : String
   span : Span
 } derive(Eq, ToJson, @debug.Debug)
+
+pub enum MeasureStatus {
+  Complete
+  Underfull
+  Overfull
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct MeasureSummary {
+  number : Int
+  voice_id : String
+  duration_value : Rational
+  expected_value : Rational
+  status : MeasureStatus
+  item_count_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn MeasureSummary::duration(Self) -> Rational
+pub fn MeasureSummary::expected(Self) -> Rational
+pub fn MeasureSummary::item_count(Self) -> Int
+pub fn MeasureSummary::number(Self) -> Int
+pub fn MeasureSummary::status_name(Self) -> String
+pub fn MeasureSummary::voice(Self) -> String
 
 pub struct Meter {
   numerator_value : String
@@ -153,6 +888,61 @@ pub enum MusicItem {
 } derive(Eq, ToJson, @debug.Debug)
 pub fn MusicItem::kind_name(Self) -> String
 
+pub struct MusicLexeme {
+  kind : MusicLexemeKind
+  text_value : String
+  start_offset : Int
+  end_offset : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn MusicLexeme::end(Self) -> Int
+pub fn MusicLexeme::kind_name(Self) -> String
+pub fn MusicLexeme::start(Self) -> Int
+pub fn MusicLexeme::text(Self) -> String
+
+pub enum MusicLexemeKind {
+  Note
+  Rest
+  Chord
+  Grace
+  Tuplet
+  Tie
+  Slur
+  Decoration
+  Repeat
+  Bar
+  Raw
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct MusicProfile {
+  notes : Int
+  rests : Int
+  pitches : Array[Int]
+  intervals : Array[(Int, Int)]
+  durations : Array[(String, Int)]
+  lowest : Int
+  highest : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn MusicProfile::duration_count(Self, String) -> Int
+pub fn MusicProfile::duration_kinds(Self) -> Int
+pub fn MusicProfile::interval_count(Self, Int) -> Int
+pub fn MusicProfile::interval_kinds(Self) -> Int
+pub fn MusicProfile::note_count(Self) -> Int
+pub fn MusicProfile::pitch_class(Self, Int) -> Int
+pub fn MusicProfile::pitch_max(Self) -> Int
+pub fn MusicProfile::pitch_min(Self) -> Int
+pub fn MusicProfile::rest_count(Self) -> Int
+
+pub struct NormalizeOptions {
+  line_ending_value : String
+  final_newline_value : Bool
+  trim_trailing_value : Bool
+  sort_headers_value : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn NormalizeOptions::with_final_newline(Self, Bool) -> Self
+pub fn NormalizeOptions::with_line_ending(Self, String) -> Self
+pub fn NormalizeOptions::with_sorted_headers(Self, Bool) -> Self
+pub fn NormalizeOptions::with_trim_trailing(Self, Bool) -> Self
+
 pub enum NoteLetter {
   A
   B
@@ -178,10 +968,263 @@ pub fn NoteValue::is_rest(Self) -> Bool
 pub fn NoteValue::letter_name(Self) -> String
 pub fn NoteValue::octave(Self) -> Int
 
+pub struct PackageMetadata {
+  package_name : String
+  package_version : String
+  package_license : String
+  package_repository : String
+  package_keywords : Array[String]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn PackageMetadata::keywords(Self) -> Array[String]
+pub fn PackageMetadata::license(Self) -> String
+pub fn PackageMetadata::name(Self) -> String
+pub fn PackageMetadata::repository(Self) -> String
+pub fn PackageMetadata::text(Self) -> String
+pub fn PackageMetadata::version(Self) -> String
+
+pub struct ParseEvent {
+  kind_value : String
+  detail_value : String
+  line_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ParseEvent::detail(Self) -> String
+pub fn ParseEvent::kind(Self) -> String
+pub fn ParseEvent::line(Self) -> Int
+
+pub struct ParseEventLog {
+  events_value : Array[ParseEvent]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ParseEventLog::event_count(Self) -> Int
+pub fn ParseEventLog::events(Self) -> Array[ParseEvent]
+pub fn ParseEventLog::text(Self) -> String
+
+pub struct QualityOptions {
+  measure_rules : Bool
+  voice_rules : Bool
+  lyric_rules : Bool
+  syntax_rules : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn QualityOptions::lyric_enabled(Self) -> Bool
+pub fn QualityOptions::measure_enabled(Self) -> Bool
+pub fn QualityOptions::syntax_enabled(Self) -> Bool
+pub fn QualityOptions::voice_enabled(Self) -> Bool
+pub fn QualityOptions::with_lyric_rules(Self, Bool) -> Self
+pub fn QualityOptions::with_measure_rules(Self, Bool) -> Self
+pub fn QualityOptions::with_syntax_rules(Self, Bool) -> Self
+pub fn QualityOptions::with_voice_rules(Self, Bool) -> Self
+
+pub struct QualityProfile {
+  profile_name : String
+  profile_options : QualityOptions
+  profile_policy : DiagnosticPolicy
+} derive(Eq, ToJson, @debug.Debug)
+pub fn QualityProfile::name(Self) -> String
+pub fn QualityProfile::options(Self) -> QualityOptions
+pub fn QualityProfile::policy(Self) -> DiagnosticPolicy
+
+pub struct QualityReport {
+  diagnostics : Array[Diagnostic]
+  summary : ScoreSummary
+} derive(Eq, ToJson, @debug.Debug)
+pub fn QualityReport::diagnostics(Self) -> Array[Diagnostic]
+pub fn QualityReport::error_count(Self) -> Int
+pub fn QualityReport::has_code(Self, String) -> Bool
+pub fn QualityReport::is_clean(Self) -> Bool
+pub fn QualityReport::summary(Self) -> ScoreSummary
+pub fn QualityReport::warning_count(Self) -> Int
+
+pub struct QueryMatch {
+  matched_text : String
+  start_offset : Int
+  end_offset : Int
+  line_value : Int
+  column_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn QueryMatch::column(Self) -> Int
+pub fn QueryMatch::end(Self) -> Int
+pub fn QueryMatch::line(Self) -> Int
+pub fn QueryMatch::start(Self) -> Int
+pub fn QueryMatch::text(Self) -> String
+
+pub struct QueryOptions {
+  case_sensitive_value : Bool
+  include_headers : Bool
+  include_music : Bool
+  include_comments : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn QueryOptions::case_sensitive(Self, Bool) -> Self
+pub fn QueryOptions::headers_only(Self) -> Self
+pub fn QueryOptions::music_only(Self) -> Self
+
+pub struct Rational {
+  numerator : Int
+  denominator : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Rational::add(Self, Self) -> Self
+pub fn Rational::compare(Self, Self) -> Int
+pub fn Rational::denominator(Self) -> Int
+pub fn Rational::is_zero(Self) -> Bool
+pub fn Rational::multiply(Self, Self) -> Self
+pub fn Rational::numerator(Self) -> Int
+pub fn Rational::reduced_text(Self) -> String
+pub fn Rational::subtract(Self, Self) -> Self
+pub fn Rational::text(Self) -> String
+
+pub struct RecordIndex {
+  records : Array[String]
+  starts : Array[Int]
+} derive(Eq, @debug.Debug)
+pub fn RecordIndex::find_title(Self, String) -> Array[Int]
+pub fn RecordIndex::record(Self, Int) -> String
+pub fn RecordIndex::record_count(Self) -> Int
+pub fn RecordIndex::records(Self) -> Array[String]
+pub fn RecordIndex::start(Self, Int) -> Int
+
+pub struct RecoveredDocument {
+  parsed : Document
+  issues : Array[Diagnostic]
+  raw_lines : Array[String]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn RecoveredDocument::document(Self) -> Document
+pub fn RecoveredDocument::has_errors(Self) -> Bool
+pub fn RecoveredDocument::issue_count(Self) -> Int
+pub fn RecoveredDocument::raw_lines(Self) -> Array[String]
+pub fn RecoveredDocument::text(Self) -> String
+
+pub struct ReleaseAudit {
+  package_value : Bool
+  schema_value : Bool
+  readme_value : Bool
+  source_value : Bool
+  test_value : Bool
+  license_value : Bool
+  actual_source : Int
+  required_source : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ReleaseAudit::actual_source(Self) -> Int
+pub fn ReleaseAudit::license_ok(Self) -> Bool
+pub fn ReleaseAudit::next_steps(Self) -> Array[String]
+pub fn ReleaseAudit::package_ok(Self) -> Bool
+pub fn ReleaseAudit::passed_gates(Self) -> Int
+pub fn ReleaseAudit::readme_ok(Self) -> Bool
+pub fn ReleaseAudit::required_source(Self) -> Int
+pub fn ReleaseAudit::schema_ok(Self) -> Bool
+pub fn ReleaseAudit::source_ok(Self) -> Bool
+pub fn ReleaseAudit::tests_ok(Self) -> Bool
+pub fn ReleaseAudit::text(Self) -> String
+
+pub struct ReleaseMatrixRow {
+  category_value : String
+  command_count_value : Int
+  required_value : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ReleaseMatrixRow::category(Self) -> String
+pub fn ReleaseMatrixRow::command_count(Self) -> Int
+pub fn ReleaseMatrixRow::required(Self) -> Bool
+
+pub struct ReportMetric {
+  name : String
+  value : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub struct RuleResult {
+  rules : Array[String]
+  diagnostics : Array[Diagnostic]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn RuleResult::diagnostics(Self) -> Array[Diagnostic]
+pub fn RuleResult::error_count(Self) -> Int
+pub fn RuleResult::has_rule(Self, String) -> Bool
+pub fn RuleResult::rule_count(Self) -> Int
+
+pub struct SchemaSnapshot {
+  version_value : String
+  fields : Array[String]
+  document : Document
+} derive(Eq, @debug.Debug)
+pub fn SchemaSnapshot::field_names(Self) -> Array[String]
+pub fn SchemaSnapshot::text(Self) -> String
+pub fn SchemaSnapshot::version(Self) -> String
+
+pub struct ScoreSummary {
+  voices : Array[VoiceSummary]
+  measures : Array[MeasureSummary]
+  notes : Int
+  rests : Int
+  duration_value : Rational
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ScoreSummary::complete_measure_count(Self) -> Int
+pub fn ScoreSummary::measure_count(Self) -> Int
+pub fn ScoreSummary::note_count(Self) -> Int
+pub fn ScoreSummary::pitch_max(Self) -> Int
+pub fn ScoreSummary::pitch_min(Self) -> Int
+pub fn ScoreSummary::rest_count(Self) -> Int
+pub fn ScoreSummary::total_duration(Self) -> Rational
+pub fn ScoreSummary::voice(Self, String) -> VoiceSummary
+pub fn ScoreSummary::voice_count(Self) -> Int
+
+pub struct SemanticWindow {
+  start_value : Int
+  end_value : Int
+  item_count_value : Int
+  note_count_value : Int
+  duration_value : Rational
+} derive(Eq, ToJson, @debug.Debug)
+pub fn SemanticWindow::duration(Self) -> Rational
+pub fn SemanticWindow::end(Self) -> Int
+pub fn SemanticWindow::item_count(Self) -> Int
+pub fn SemanticWindow::note_count(Self) -> Int
+pub fn SemanticWindow::start(Self) -> Int
+
 pub enum Severity {
   Error
   Warning
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct SourceCursor {
+  map : SourceMap
+  length_value : Int
+} derive(Eq, @debug.Debug)
+pub fn SourceCursor::seek(Self, Int) -> CursorPosition
+
+pub struct SourceMap {
+  source : String
+  line_starts : Array[Int]
+} derive(Eq, @debug.Debug)
+pub fn SourceMap::column_at(Self, Int) -> Int
+pub fn SourceMap::line_at(Self, Int) -> Int
+pub fn SourceMap::slice(Self, Int, Int) -> String
+
+pub struct SourceMetrics {
+  bytes_value : Int
+  lines_value : Int
+  nonempty_value : Int
+  fields_value : Int
+  comments_value : Int
+  music_value : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn SourceMetrics::bytes(Self) -> Int
+pub fn SourceMetrics::comments(Self) -> Int
+pub fn SourceMetrics::fields(Self) -> Int
+pub fn SourceMetrics::lines(Self) -> Int
+pub fn SourceMetrics::music(Self) -> Int
+pub fn SourceMetrics::nonempty_lines(Self) -> Int
+
+pub struct SourceStatistics {
+  source_length : Int
+  lines : Int
+  fields : Int
+  comments : Int
+  music : Int
+  bars : Int
+  directives : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn SourceStatistics::bar_count(Self) -> Int
+pub fn SourceStatistics::comment_count(Self) -> Int
+pub fn SourceStatistics::directive_count(Self) -> Int
+pub fn SourceStatistics::field_count(Self) -> Int
+pub fn SourceStatistics::line_count(Self) -> Int
+pub fn SourceStatistics::music_count(Self) -> Int
+pub fn SourceStatistics::source_length(Self) -> Int
 
 pub struct Span {
   start : Int
@@ -199,9 +1242,14 @@ pub struct Token {
   text : String
   line : Int
   column : Int
+  start_offset : Int
+  end_offset : Int
 } derive(Eq, ToJson, @debug.Debug)
+pub fn Token::column(Self) -> Int
+pub fn Token::end(Self) -> Int
 pub fn Token::kind_name(Self) -> String
 pub fn Token::line(Self) -> Int
+pub fn Token::start(Self) -> Int
 pub fn Token::text(Self) -> String
 
 pub enum TokenKind {
@@ -210,6 +1258,12 @@ pub enum TokenKind {
   Music
   Bar
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct ValidationProfile {
+  enabled : Array[String]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ValidationProfile::enable(Self, String) -> Self
+pub fn ValidationProfile::only_rule(Self, String) -> Self
 
 pub struct Voice {
   id : String
@@ -221,6 +1275,19 @@ pub struct VoiceMetadata {
   value : String
 } derive(Eq, ToJson, @debug.Debug)
 
+pub struct VoicePitchRange {
+  id_value : String
+  minimum : Int
+  maximum : Int
+  notes : Int
+  rests : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn VoicePitchRange::id(Self) -> String
+pub fn VoicePitchRange::max(Self) -> Int
+pub fn VoicePitchRange::min(Self) -> Int
+pub fn VoicePitchRange::note_count(Self) -> Int
+pub fn VoicePitchRange::rest_count(Self) -> Int
+
 pub struct VoiceSpec {
   voice_id : String
   metadata_values : Array[VoiceMetadata]
@@ -228,7 +1295,38 @@ pub struct VoiceSpec {
 pub fn VoiceSpec::id(Self) -> String
 pub fn VoiceSpec::metadata(Self, String) -> String
 
+pub struct VoiceSummary {
+  voice_id : String
+  notes : Int
+  rests : Int
+  bars : Int
+  duration_value : Rational
+  measures : Array[MeasureSummary]
+  pitch_low : Int
+  pitch_high : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn VoiceSummary::bar_count(Self) -> Int
+pub fn VoiceSummary::id(Self) -> String
+pub fn VoiceSummary::measure_summaries(Self) -> Array[MeasureSummary]
+pub fn VoiceSummary::note_count(Self) -> Int
+pub fn VoiceSummary::pitch_max(Self) -> Int
+pub fn VoiceSummary::pitch_min(Self) -> Int
+pub fn VoiceSummary::rest_count(Self) -> Int
+pub fn VoiceSummary::total_duration(Self) -> Rational
+
+pub struct WalkSummary {
+  nodes : Int
+  kinds : Array[(String, Int)]
+  headers : Int
+  voices : Int
+  lyrics : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn WalkSummary::header_count(Self) -> Int
+pub fn WalkSummary::kind_count(Self, String) -> Int
+pub fn WalkSummary::lyrics_count(Self) -> Int
+pub fn WalkSummary::total_nodes(Self) -> Int
+pub fn WalkSummary::voice_count(Self) -> Int
+
 // Type aliases
 
 // Traits
-
