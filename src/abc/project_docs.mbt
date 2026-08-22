@@ -40,6 +40,7 @@ pub fn library_api_links() -> Array[(String, String)] {
   [
     ("parse", "Parse source-aware ABC"),
     ("validate", "Return source diagnostics"),
+    ("scan", "Tokenize source with locations"),
     ("to_json", "Serialize schema v1"),
     ("pretty_print", "Print normalized ABC"),
     ("parse_note_value", "Parse typed notes"),

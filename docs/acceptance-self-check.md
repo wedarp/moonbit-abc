@@ -8,9 +8,10 @@ This report records the local evidence used for the August MoonBit Hackathon acc
 | --- | --- | --- |
 | MoonBit project | `moon.mod`, `src/abc`, `cmd/abc` | pass |
 | Main implementation language | 73 production `.mbt` files | pass |
-| Production source scale | `count_moonbit_lines.ps1 -RequireMinimum 7000` → 8,522 non-comment lines | pass |
+| Production source scale | `count_moonbit_lines.ps1 -RequireMinimum 7000` → 8,523 non-comment lines | pass |
 | Formatting and warnings | `moon fmt --check`, `moon check --deny-warn --fmt` | pass |
-| Tests | `moon test --deny-warn` → 102/102 | pass |
+| Tests | `moon test --deny-warn` → 108/108 | pass |
+| Coverage evidence | `moon coverage report -f summary` → 2,474/3,380 lines | documented |
 | Generated interfaces | `moon info` | pass |
 | Build target | `moon build --target wasm-gc` | pass |
 | Runnable example | `moon run ... --target wasm-gc check examples/demo.abc` → `ok` | pass |
@@ -25,7 +26,7 @@ The Windows native build was also attempted. It is currently blocked by the inst
 - `git remote show github` reports `main` as the remote default branch.
 - The configured remote is `https://github.com/wedarp/moonbit-abc.git`.
 - GitHub authentication must be checked in an environment that can read the user's `gh` configuration.
-- The module namespace is `wedarp/moonbit-abc`; version `0.1.1` was published successfully after the `0.1.0` duplicate-version precheck.
+- The module namespace is `wedarp/moonbit-abc`; version `0.1.1` was published successfully after the `0.1.0` duplicate-version precheck. The next local release is `0.1.2`.
 - `moon publish` is also provided as a manual GitHub Actions workflow using the `MOONCAKES_TOKEN` repository secret.
 - The proposal file is a local submission artifact and is intentionally not part of repository documentation changes.
 
