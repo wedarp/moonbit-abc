@@ -19,7 +19,3 @@
 核验日期：2026-08-05。
 
 在 [Mooncakes](https://mooncakes.io/) 对 `abc`、`notation`、`parser`、`music`、`midi`、`musicxml` 做了关键词检索，并查看了相邻的通用 parser、Markdown parser 和 MIDI/音乐绑定项目。没有发现成熟且直接提供 ABC notation source parser + AST + pretty printer 的项目。这个结论是选题边界判断，不是对 Mooncakes 全站的永久性排除；发布前仍应重新搜索并在 README 中更新结果。
-
-## 竞赛与工程约束
-
-比赛提交要求以 [MoonBit 黑客松官方页面](https://bxup9uklfcb.feishu.cn/wiki/KNrVwEVFziPHiGkQtwhc6w3gndd) 为准。本仓库因此保留公开 README、示例、测试、CI、Apache-2.0 许可证、来源说明和可追踪提交历史；实现、测试结果和维护边界由仓库作者负责。

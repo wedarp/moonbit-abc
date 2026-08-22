@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3 - 2026-08-23
+
+- Use the stable core environment API for portable CLI argument handling, including Windows native builds.
+- Add native CLI build and smoke-test coverage to the cross-platform GitHub Actions matrix.
+- Streamline the public repository documentation around the library, CLI, sources, and development workflow.
+
 ## 0.1.2 - 2026-08-23
 
 - Corrected contributor verification instructions and documented the supported ABC grammar and non-goals.

@@ -1,6 +1,6 @@
 ///|
 fn main {
-  let args = @sys.get_cli_args()
+  let args = @env.args()
   match args {
     [_, command, path] => {
       let (code, output) = @cli.command_file(command, path)

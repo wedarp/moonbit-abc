@@ -48,15 +48,18 @@ jobs:
         run: moon info
       - name: Ensure generated interfaces are committed
         run: git diff --exit-code
-      - name: Build core native and full wasm targets
+      - name: Build core native, full native CLI, and wasm targets
         run: |
           moon build --target native src/abc
+          moon build --target native
           moon build --target wasm-gc
       - name: Verify source scale
         shell: pwsh
         run: ./tools/count_moonbit_lines.ps1 -RequireMinimum 7000
       - name: Run CLI and boundary fixtures
         run: |
+          moon run cmd/abc --target native check examples/demo.abc
+          ! moon run cmd/abc --target native check examples/invalid.abc
           moon run cmd/abc --target wasm-gc check examples/demo.abc
           moon run cmd/abc --target wasm-gc analyze fixtures/abc/benchmark-medium.abc
           ! moon run cmd/abc --target wasm-gc format-check fixtures/abc/boundary-lines.abc
