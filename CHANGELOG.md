@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6 - 2026-08-24
+
+- Update CLI string building to the current MoonBit constructor API for warning-free stable-toolchain checks.
+
 ## 0.1.5 - 2026-08-24
 
 - Use the current `StringBuilder()` API so warning-free checks stay compatible with MoonBit 0.10.9.

@@ -1,7 +1,7 @@
 ///|
 fn diagnostics_text(source : String) -> String {
   let diagnostics = @library.validate(@library.parse(source))
-  let builder = StringBuilder::new()
+  let builder = StringBuilder()
   for diagnostic in diagnostics {
     builder.write_string(diagnostic.line().to_string())
     builder.write_char(':')
