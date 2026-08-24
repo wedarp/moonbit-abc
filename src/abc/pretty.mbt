@@ -19,7 +19,7 @@ fn item_text(item : MusicItem) -> String? {
 ///|
 pub fn pretty_print(document : Document) -> String {
   let normalized = normalize(document)
-  let builder = StringBuilder::new()
+  let builder = StringBuilder()
   for header in normalized.headers {
     match header {
       Header::Field(key, value, _) => {

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5 - 2026-08-24
+
+- Use the current `StringBuilder()` API so warning-free checks stay compatible with MoonBit 0.10.9.
+- Normalize repository text files to LF for consistent formatting checks across operating systems.
+
 ## 0.1.4 - 2026-08-24
 
 - Simplified the public documentation around the library, CLI, supported grammar, and source provenance.
