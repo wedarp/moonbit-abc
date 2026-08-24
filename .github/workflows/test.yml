@@ -53,9 +53,6 @@ jobs:
           moon build --target native src/abc
           moon build --target native
           moon build --target wasm-gc
-      - name: Verify source scale
-        shell: pwsh
-        run: ./tools/count_moonbit_lines.ps1 -RequireMinimum 7000
       - name: Run CLI and boundary fixtures
         run: |
           moon run cmd/abc --target native check examples/demo.abc

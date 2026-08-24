@@ -14,7 +14,7 @@ The fixtures are versioned under `fixtures/abc/` and include empty input, mixed 
 
 ## Captured baseline
 
-Captured with `moon 0.1.20260814` / `moonc v0.10.8+8606a5800`, ten repetitions per fixture:
+Captured with `moon 0.1.20260819` / `moonc v0.10.9+6e6c44045`, ten repetitions per fixture:
 
 ```text
 fixture=fixtures/abc/benchmark-small.abc bytes=73 lines=6 runs=10 parsed_nodes=160 analyzed_notes=110
